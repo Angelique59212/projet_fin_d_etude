@@ -1,7 +1,7 @@
 <?php
 
 use App\Router;
-require __DIR__ . '/../includes.php';
+require __DIR__ . '/../include.php';
 
 session_start();
 
@@ -12,3 +12,4 @@ try {
 catch (ReflectionException $e) {
     echo "La connexion a échoué";
 }
+
