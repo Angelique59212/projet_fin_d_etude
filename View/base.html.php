@@ -30,19 +30,16 @@
     </div>
 </header>
 
-<h1 id="title-menu">Les troubles DYS</h1>
-
-<div>
+<div id="title-menu">
+    <h1>Les troubles DYS</h1>
     <a href="/?c=home"><img id="logo" src="/assets/img/logo_dys.png" alt="learning_disabilities"></a>
 </div>
 
 <main><?= $html ?></main>
 
 <footer>
-    <div>
-        <a href="/?c=home">Home</a>
-    </div>
     <div id="bottom">
+        <a href="/?c=home">Home</a>
         <a href="/?c=user&a=save-form">Contact</a>
         <a href="/?c=form&a=confidentiality">Confidentialité</a>
     </div>

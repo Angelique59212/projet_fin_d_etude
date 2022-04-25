@@ -11,26 +11,83 @@ html {
 body {
     font-size: 1.6rem;
     font-family: Quicksand,sans-serif;
-    background: whitesmoke;.
+    background: antiquewhite;.
     color: #383838;
 }
 
 #logo {
-    width: 10vw;
+    width: 25vw;
 }
 
+/*Header and Footer */
 header, footer {
     width: 100%;
     height: 5rem;
-    background: #efecec;
+    background: #dacccc;
     padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
+footer {
+    margin-top: 35vw;
+}
 
-
-#bottom {
+#bottom, #logout {
     margin-right: 3rem;
+}
+
+header a {
+    margin: 0.4rem;
+}
+
+footer a {
+    margin: 0.4rem;
+}
+
+header .fa-bars {
+    display: none;
+}
+
+a {
+    color: #353333;
+}
+
+#title-menu {
+    text-align: center;
+    padding: 1rem;
+    font-size: 2.2rem;
+}
+
+/* login / Register */
+#login-container, #register-container {
+    text-align: center;
+
+}
+
+#login-container input, #register-container input, #contact-container input {
+    margin: 1rem;
+    width: 10vw;
+    border-radius: 0.3rem;
+}
+
+#register-container input {
+    display: block;
+    margin: 0.4rem auto;
+}
+
+#register-container #submit, #contact-container button {
+    margin: 2rem auto;
+}
+
+/* Contact */
+.container {
+    text-align: center;
+}
+
+#submit, #contact-container button {
+    padding: 0.3rem;
+    background: #dacccc;
+    font-size: 1.5rem;
 }
