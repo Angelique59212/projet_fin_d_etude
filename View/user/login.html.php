@@ -3,8 +3,8 @@
     <div id="login-container">
         <form action="/?c=user&a=login" method="post">
             <div>
-                <label for="mail">Adresse-mail</label>
-                <input type="email" name="mail" id="mail" minlength="5" maxlength="150" required>
+                <label for="email">Adresse-mail</label>
+                <input type="email" name="email" id="email" minlength="5" maxlength="150" required>
             </div>
 
             <div>
