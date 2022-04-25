@@ -21,6 +21,6 @@ class ErrorController extends AbstractController
      */
     public function index()
     {
-        $this->render('error/404');
+
     }
 }

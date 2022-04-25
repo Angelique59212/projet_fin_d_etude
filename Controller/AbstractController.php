@@ -25,4 +25,34 @@
          }
          return true;
      }
+
+     /**
+      * @param string $value
+      * @param int $min
+      * @param int $max
+      * @param string $redirect
+      * @return void
+      */
+     public function checkRange (string $value, int $min, int $max, string $redirect): void
+     {
+         if (strlen($value) < $min || strlen($value) > $max) {
+             header("Location: " . $redirect);
+             exit();
+         }
+     }
+
+     /**
+      * @param string $password
+      * @param string $password_repeat
+      * @return bool
+      */
+     public function checkPassword(string $password, string $password_repeat):bool
+     {
+         if ($password !== $password_repeat) {
+             return true;
+         }
+         else {
+             return false;
+         }
+     }
 }

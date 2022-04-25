@@ -1,9 +1,6 @@
 <div class="container">
     <div id="register-container">
         <form action="/index.php?c=user&a=register" method="post">
-            <div>
-                <img id="background-login" src="/assets/img/background/background-login2.png" alt="baby">
-            </div>
 
             <div>
                 <label for="mail">Adresse mail</label>

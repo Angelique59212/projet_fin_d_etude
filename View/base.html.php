@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Les Toubles Dys</title>
+    <title>Les Troubles Dys</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         use App\Model\Entity\User;
 
         if (!isset($_SESSION['user'])) {?>
-            <a href="/?c=user&a=login">Login</a>/<a href="/?c=user&a=register">Inscription</a><?php
+            <a href="/?c=home">Home</a><a href="/?c=user&a=login">Login</a>/<a href="/?c=user&a=register">Inscription</a><?php
         }
         else {
             $user = $_SESSION['user'];
@@ -39,6 +39,9 @@
 <main><?= $html ?></main>
 
 <footer>
+    <div>
+        <a href="/?c=home">Home</a>
+    </div>
     <div id="bottom">
         <a href="/?c=user&a=save-form">Contact</a>
         <a href="/?c=form&a=confidentiality">Confidentialité</a>

@@ -23,8 +23,6 @@ class UserManager
         return $users;
     }
 
-
-
     /**
      * Login
      * @param string $mail
@@ -83,15 +81,14 @@ class UserManager
      */
     private static function makeUser(array $data): User
     {
-        $user = (new User())
+        return (new User())
             ->setId($data['id'])
             ->setPassword($data['password'])
             ->setEmail($data['email'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setAge($data['age']);
-
-            return $user->setRoles(RoleManager::getRoleByUser($user));
+            ->setAge($data['age'])
+            ->setRole($data['role_fk']);
     }
 
     /**
@@ -130,11 +127,58 @@ class UserManager
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
         $stmt->bindValue(':age', $user->getAge());
-        $stmt->bindValue(':role_fk', 1);
+        $stmt->bindValue(':role_fk', $user->getRole());
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());
 
         return $result;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public static function deleteUser(User $user): bool
+    {
+        if (self::userExists($user->getId())) {
+            return Connect::dbConnect()->exec("
+            DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
+        ");
+        }
+        return false;
+    }
+
+    /**
+     * @param int $id
+     * @param string $firstname
+     * @param string $lastname
+     * @param string $email
+     * @param int $age
+     * @return void
+     */
+    public static function editUser(int $id, string $firstname, string $lastname, string $email,int $age)
+    {
+        $stmt = Connect::dbConnect()->prepare("
+            UPDATE " . self::TABLE ." SET firstname = :firstname, lastname = :lastname, email = :email, age = :age WHERE id = $id
+        ");
+        $stmt->bindParam(':firstname', $firstname);
+        $stmt->bindParam(':lastname', $lastname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':age', $age);
+      ;
+
+        $stmt->execute();
+    }
+
+    /**
+     * @param string $mail
+     * @return User|null
+     */
+    public static function getUserByMail(string $mail): ?User
+    {
+        $stmt = Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :mail LIMIT 1");
+        $stmt->bindParam(':email', $mail);
+        return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
     }
 }

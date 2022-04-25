@@ -22,7 +22,7 @@ class UserController extends AbstractController
                 header("Location: /?c=user&f=1");
             }
 
-            $mail = trim(filter_var($_POST['mail'], FILTER_SANITIZE_STRING));
+            $mail = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
             $firstname = trim(filter_var($_POST['firstname'], FILTER_SANITIZE_STRING));
             $lastname = trim(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
@@ -35,6 +35,7 @@ class UserController extends AbstractController
                 ->setLastname($lastname)
                 ->setPassword($password)
                 ->setAge($age)
+                ->setRole(1)
                 ;
 
             if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
@@ -63,11 +64,11 @@ class UserController extends AbstractController
      */
     public function login () {
         if (isset($_POST['submit'])) {
-            if (!$this->formIsset('mail', 'password')) {
+            if (!$this->formIsset('email', 'password')) {
                 header("Location: /?home&f=1");
             }
 
-            $mail = filter_var($_POST['mail'], FILTER_SANITIZE_STRING);
+            $mail = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
             $password = $_POST['password'];
 
             UserManager::login($mail, $password);
@@ -112,10 +113,10 @@ class UserController extends AbstractController
      * @return void
      */
     public function saveForm() {
-        if (isset($_POST['mail'])) {
+        if (isset($_POST['email'])) {
             $name = trim(strip_tags($_POST['name']));
             $message = trim(strip_tags($_POST['message']));
-            $userMail = trim(strip_tags($_POST['mail']));
+            $userMail = trim(strip_tags($_POST['email']));
 
             $to = 'dehainaut.angelique@orange.fr';
             $subject = "Vous avez un message";
@@ -126,9 +127,9 @@ class UserController extends AbstractController
             if (filter_var($userMail, FILTER_VALIDATE_EMAIL)) {
                 if (strlen($message) >=20 && strlen($message) <= 250) {
                     if (mail($to, $subject, $message, $headers, $userMail)) {
-                        $_SESSION['mail'] = "mail-success";
+                        $_SESSION['email'] = "mail-success";
                     } else {
-                        $_SESSION['mail'] = "mail-error";
+                        $_SESSION['email'] = "mail-error";
                     }
                     header('Location: /index.php?c=user&a=save-form');
                 }
@@ -137,6 +138,44 @@ class UserController extends AbstractController
         else {
             $this->render('form/contact');
         }
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function editUser(int $id)
+    {
+        if (isset($_POST['submit'])) {
+            $user = $_SESSION['user'];
+            /* @var User $user */
+            $id = $user->getId();
+            $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+            $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $age = trim(filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT));
+
+
+            UserManager::editUser($id, $firstname, $lastname, $email, $age);
+            $this->render('user/profile', [
+                'profile' => UserManager::getUserById($id)
+            ]);
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function deleteUser(int $id)
+    {
+        if (UserManager::userExists($id)) {
+            $user = UserManager::getUserById($id);
+            $deleted = UserManager::deleteUser($user);
+        }
+        self::disconnect();
+        $this->index();
+
     }
 
 }

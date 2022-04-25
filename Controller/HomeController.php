@@ -1,9 +1,14 @@
 <?php
 
-namespace Controller\AbstractController;
+namespace App\Controller;
 
-class HomeController extends \AbstractController
+use AbstractController;
+
+class HomeController extends AbstractController
 {
+    /**
+     * @return void
+     */
     public function index()
     {
         $this->render('home/home');
