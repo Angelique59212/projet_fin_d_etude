@@ -27,6 +27,24 @@
      }
 
      /**
+      * @return void
+      */
+     public function redirectIfConnected(): void
+     {
+         if(self::verifyUserConnect()) {
+             $this->render('home/home');
+         }
+     }
+
+     /**
+      * @return bool
+      */
+     public static function verifyUserConnect(): bool
+     {
+         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
+     }
+
+     /**
       * @param string $value
       * @param int $min
       * @param int $max
@@ -54,5 +72,16 @@
          else {
              return false;
          }
+     }
+
+     /**
+      * @param $data
+      * @return string
+      */
+     public function dataClean($data):string
+     {
+         $data = trim(strip_tags($data));
+         $data = stripslashes($data);
+         return htmlspecialchars($data);
      }
 }

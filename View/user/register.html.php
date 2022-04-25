@@ -1,10 +1,11 @@
+
 <div class="container">
     <div id="register-container">
         <form action="/index.php?c=user&a=register" method="post">
 
             <div>
-                <label for="mail">Adresse mail</label>
-                <input type="email" id="mail" name="mail" minlength="5" maxlength="150" required>
+                <label for="email">Adresse mail</label>
+                <input type="email" id="email" name="email" minlength="5" maxlength="150" required>
             </div>
 
             <div>

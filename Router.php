@@ -4,7 +4,7 @@ namespace App;
 
 use AbstractController;
 
-use Controller\AbstractController\ErrorController;
+use App\Controller\ErrorController;
 use ReflectionException;
 use ReflectionMethod;
 

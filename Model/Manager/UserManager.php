@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Model\Manager;
+
 use App\Model\Entity\User;
 use App\Model\Manager\RoleManager;
+use Connect;
 
 class UserManager
 {
@@ -88,7 +91,7 @@ class UserManager
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setAge($data['age'])
-            ->setRole($data['role_fk']);
+            ->setRole($data['mdf58_role_fk']);
     }
 
     /**
@@ -118,8 +121,8 @@ class UserManager
     public static function addUser(User &$user): bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (email, firstname, lastname, password,age, role_fk) 
-            VALUES (:email, :firstname, :lastname, :password, :age, :role_fk)
+            INSERT INTO " . self::TABLE . " (email, firstname, lastname, password,age, mdf58_role_fk) 
+            VALUES (:email, :firstname, :lastname, :password, :age, :mdf58_role_fk)
         ");
 
         $stmt->bindValue(':email', $user->getEmail());
@@ -127,7 +130,7 @@ class UserManager
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
         $stmt->bindValue(':age', $user->getAge());
-        $stmt->bindValue(':role_fk', $user->getRole());
+        $stmt->bindValue(':mdf58_role_fk', $user->getRole());
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());

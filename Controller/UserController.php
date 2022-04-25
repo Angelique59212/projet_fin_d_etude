@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use AbstractController;
 use App\Model\Entity\User;
-use UserManager;
+use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
 {
@@ -16,16 +16,18 @@ class UserController extends AbstractController
 
     public function register()
     {
+        self::redirectIfConnected();
         if (isset($_POST['submit'])) {
             if (!$this->formIsset
             ('email', 'firstname', 'lastname', 'password', 'password-repeat','age')) {
                 header("Location: /?c=user&f=1");
             }
 
-            $mail = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-            $firstname = trim(filter_var($_POST['firstname'], FILTER_SANITIZE_STRING));
-            $lastname = trim(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
+            $mail = $this->dataClean(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+            $firstname = $this->dataClean(filter_var($_POST['firstname'], FILTER_SANITIZE_STRING));
+            $lastname = $this->dataClean(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+            $passwordRepeat = $_POST['password-repeat'];
             $age = trim(filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT));
 
 
