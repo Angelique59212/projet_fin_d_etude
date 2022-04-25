@@ -158,6 +158,7 @@ class UserController extends AbstractController
 
 
             UserManager::editUser($id, $firstname, $lastname, $email);
+            $_SESSION['message'] = 'Votre profil a bien été modifié';
             $this->render('user/profile', [
                 'profile' => UserManager::getUserById($id)
             ]);

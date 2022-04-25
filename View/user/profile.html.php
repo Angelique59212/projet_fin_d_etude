@@ -1,10 +1,18 @@
 <?php
+use App\Model\Entity\User;?>
 
-use App\Model\Entity\User;
+<?php
+    if (isset($_SESSION['message'])) {?>
+        <div class="message">
+            <p><?= $_SESSION['message'] ?></p>
+            <button id="close">x</button>
+        </div>
+        <?php
+    }?>
+<?php
 
 /* @var User $user */
 $user = $data['profile'];
-
 ?>
 
 <h1 id="title-profile"> Mon Profil</h1>

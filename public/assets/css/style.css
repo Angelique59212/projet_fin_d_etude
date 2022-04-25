@@ -122,6 +122,27 @@ a {
     text-align: center;
 }
 
+/* Validate modify profile */
+.message {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    background: #dacccc;
+    color: blue;
+    padding: 2rem;
+}
+
+.message #close {
+    margin-left: 0.8rem;
+}
+
+#close {
+    border: none;
+    width: 1rem;
+}
+
 
 
 
