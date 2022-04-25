@@ -155,10 +155,9 @@ class UserController extends AbstractController
             $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
             $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $age = trim(filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT));
 
 
-            UserManager::editUser($id, $firstname, $lastname, $email, $age);
+            UserManager::editUser($id, $firstname, $lastname, $email);
             $this->render('user/profile', [
                 'profile' => UserManager::getUserById($id)
             ]);

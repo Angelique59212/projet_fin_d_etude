@@ -157,19 +157,18 @@ class UserManager
      * @param string $firstname
      * @param string $lastname
      * @param string $email
-     * @param int $age
      * @return void
      */
-    public static function editUser(int $id, string $firstname, string $lastname, string $email,int $age)
+    public static function editUser(int $id, string $firstname, string $lastname, string $email)
     {
         $stmt = Connect::dbConnect()->prepare("
-            UPDATE " . self::TABLE ." SET firstname = :firstname, lastname = :lastname, email = :email, age = :age WHERE id = $id
+            UPDATE " . self::TABLE ." SET firstname = :firstname, lastname = :lastname, email = :email WHERE id = $id
         ");
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':age', $age);
-      ;
+
+        ;
 
         $stmt->execute();
     }
