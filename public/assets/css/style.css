@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: Quicksand,sans-serif;
+    background: whitesmoke;.
+    color: #383838;
+}
+
+#logo {
+    width: 10vw;
+}
+
+header, footer {
+    width: 100%;
+    height: 5rem;
+    background: #efecec;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
+#bottom {
+    margin-right: 3rem;
+}

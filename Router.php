@@ -27,9 +27,11 @@ class Router
 
         //Here we have a controller for sure.
         $method = self::guessMethod($controller, $method);
+
         if (null === $method) {
             $controller->index();
         }
+
         else {
             $params = self::guessParam($controller, $method);
             if (count($params) === 0) {
@@ -88,8 +90,9 @@ class Router
      * @return ErrorController|mixed
      */
     private static function guessController (string $controller) {
-        $controller = ucfirst($controller) . 'Controller';
+        $controller = 'App\Controller\\' .ucfirst($controller) . 'Controller';
         return class_exists($controller) ? new $controller : new ErrorController();
+
     }
 
     /**

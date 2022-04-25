@@ -16,8 +16,11 @@ class ErrorController extends AbstractController
         $this->render('error/404');
     }
 
+    /**
+     * @return void
+     */
     public function index()
     {
-        // TODO: Implement index() method.
+        $this->render('error/404');
     }
 }

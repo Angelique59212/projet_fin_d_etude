@@ -15,4 +15,14 @@
         $html = ob_get_clean();
         require __DIR__ . "/../View/base.html.php";
     }
+
+     public function formIsset (...$inputNames): bool
+     {
+         foreach ($inputNames as $name) {
+             if (!isset($_POST[$name])) {
+                 return false;
+             }
+         }
+         return true;
+     }
 }
