@@ -82,6 +82,17 @@
             <img id="stars-dys" src="/assets/img/dyslexie/stars.jpg" alt="stars dyslexique">
         </div>
     </div>
+    
+    <div class="association">
+        <h3>Liens concernant la Dyslexie et quelques associations</h3>
+        <a href="https://www.dys-positif.fr/comment-aider-un-enfant-dyslexique-les-3-erreurs-a-eviter/">
+            Comment aider un enfant dyslexique: 3 erreurs à éviter
+        </a>
+        <a href="https://www.numero1-scolarite.com/comment-soigner-et-traiter-la-dyslexie-de-votre-enfant-solutions/">
+            Soigner et traiter la dyslexie
+        </a>
+        <a href="https://www.apedys.org/">Fédération ANAPEDYS</a>
+    </div>
 
 
 

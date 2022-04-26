@@ -200,6 +200,16 @@ a {
     list-style-type: none;
 }
 
+.association h3 {
+    color: indianred;
+    margin: 1rem;
+    text-decoration: underline;
+}
+
+.association a {
+    display: block;
+    margin: 0.4rem;
+}
 
 
 

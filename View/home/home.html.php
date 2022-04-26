@@ -7,7 +7,7 @@
             lettres, l'enfant écrit lentement et de manière parfois illisible, et s'accompagne de beaucoup de fautes
             d'orthographe.
         </p>
-        <a href="/index.php?c=article&a=dyslexie" class="btn btn-primary"> En savoir plus</a>
+        <a href="/index.php?c=article" class="btn btn-primary"> En savoir plus</a>
 
     </div>
 </div>
