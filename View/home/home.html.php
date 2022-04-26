@@ -1,5 +1,5 @@
 <div class="card">
-    <img class="card-img-top w-25" src="/assets/img/dyslexie/dyslexie.jpg" alt="image enfant dyslexique">
+    <img class="card-img-top w-30" src="/assets/img/dyslexie/dyslexie.jpg" alt="image enfant dyslexique">
     <div class="card-body">
         <h2 class="card-title fw-bold">Dyslexie</h2>
         <p class="card-text">

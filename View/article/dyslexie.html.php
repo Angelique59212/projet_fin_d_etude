@@ -34,6 +34,28 @@
         </div>
     </div>
 
+    <div class="container-second">
+        <div class="symptom">
+            <h3 class="definition">Comment faire apprendre une leçon à son enfant ?</h3>
+            <p>
+                Vous pouvez lui découper la leçon par petits morceaux, lui demander de reformuler avec ses mots pour
+                vérifier qu'il est bien compris la leçon.
+                Utiliser également des surligneurs pour les mots clés importants et les définitions.
+            </p>
+            <p>
+                En ce qui concerne les poésies, vous pouvez lui enregistrer et lui faire écouter tout les soirs.
+                Faites lui aussi commencer par la lire et faire le dessin, ce qui lui permettra de visualiser ce qui
+                se raconte dans la poésie.
+            </p>
+        </div>
+        <div class=" image-symptom image-alphabet">
+            <img src="/assets/img/dyslexie/photo-dyslexie.jpg" alt="dyslexie">
+        </div>
+
+    </div>
+
+
+
 
 
 

@@ -180,6 +180,10 @@ a {
     width: 35vw;
 }
 
+.image-alphabet img {
+    width: 33vw;
+}
+
 .symptom p {
     padding: 1rem;
 }
