@@ -51,9 +51,37 @@
         <div class=" image-symptom image-alphabet">
             <img src="/assets/img/dyslexie/photo-dyslexie.jpg" alt="dyslexie">
         </div>
-
     </div>
 
+    <div class="container-second">
+        <div class="symptom">
+            <h3 class="definition">Peut-on en guérir ?</h3>
+            <p>
+                La dyslexie ne se guérit pas, un accompagnement en orthophonie est nécessaire pour l'aider à revoir
+                les codes alphabétiques.
+
+            </p>
+        </div>
+        <div class="image-symptom image-alphabet">
+            <img src="/assets/img/dyslexie/orthophonie.jpg" alt="orthophoniste et dyslexie">
+        </div>
+    </div>
+
+    <div class="container-second">
+        <div class="stars">
+            <h3 class="definition"> Voici quelques Stars et Célébrités dyslexique:</h3>
+            <ul>
+                <li>Jules Vernes</li>
+                <li>Albert Einstein</li>
+                <li>Louis Pasteur</li>
+                <li>Mozart</li>
+                <li>Johnny Hallyday</li>
+            </ul>
+        </div>
+        <div class="image-symptom image-alphabet">
+            <img id="stars-dys" src="/assets/img/dyslexie/stars.jpg" alt="stars dyslexique">
+        </div>
+    </div>
 
 
 

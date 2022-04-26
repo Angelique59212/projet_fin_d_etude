@@ -165,7 +165,7 @@ a {
     padding: 0.8rem;
 }
 
-.symptom {
+.symptom , .stars {
     margin: 1rem 7rem;
     padding: 1rem;
     border: 1px dashed black;
@@ -186,6 +186,18 @@ a {
 
 .symptom p {
     padding: 1rem;
+}
+
+.stars {
+    width: 53vw;
+}
+
+#stars-dys {
+    width: 25vw;
+}
+
+.stars li {
+    list-style-type: none;
 }
 
 
