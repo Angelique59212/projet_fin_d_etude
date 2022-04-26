@@ -69,7 +69,7 @@ a {
     text-align: center;
 }
 
-#register-container {
+#register-container, #contact-container {
     border: 1px solid black;
     width: 50vw;
     margin: 0 auto;
@@ -77,6 +77,10 @@ a {
     padding: 3rem;
 }
 
+#contact-container textarea {
+    display: block;
+    margin: 0 auto;
+}
 
 #login-container input, #register-container input, #contact-container input, #profile-container input {
     margin: 1rem;
@@ -84,10 +88,22 @@ a {
     border-radius: 0.3rem;
 }
 
+#contact-container input {
+    width: 20rem;
+    display: block;
+    margin: 0 auto;
+}
+
+#contact-container button {
+    width: 15rem;
+}
+
 #register-container input {
     margin: 0.4rem auto;
     border-radius: 0.3rem;
 }
+
+
 
 label {
     width: 12vw;

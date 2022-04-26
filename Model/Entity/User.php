@@ -10,7 +10,6 @@ class User extends AbstractEntity
     private string $firstname;
     private string $lastname;
     private string $password;
-    private int $age;
     private int $role;
 
     /**
@@ -104,23 +103,4 @@ class User extends AbstractEntity
         $this->password = $password;
         return $this;
     }
-
-    /**
-     * @return int
-     */
-    public function getAge(): int
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param int $age
-     * @return User
-     */
-    public function setAge(int $age): self
-    {
-        $this->age = $age;
-        return $this;
-    }
-
 }

@@ -50,7 +50,6 @@ class UserManager
                         ->setFirstname($user['firstname'])
                         ->setLastname($user['lastname'])
                         ->setPassword($user['password'])
-                        ->setAge($user['age'])
                     ;
 
                     if (!isset($_SESSION['user'])) {
@@ -90,7 +89,6 @@ class UserManager
             ->setEmail($data['email'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setAge($data['age'])
             ->setRole($data['mdf58_role_fk']);
     }
 
@@ -121,15 +119,14 @@ class UserManager
     public static function addUser(User &$user): bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (email, firstname, lastname, password,age, mdf58_role_fk) 
-            VALUES (:email, :firstname, :lastname, :password, :age, :mdf58_role_fk)
+            INSERT INTO " . self::TABLE . " (email, firstname, lastname, password, mdf58_role_fk) 
+            VALUES (:email, :firstname, :lastname, :password, :mdf58_role_fk)
         ");
 
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':firstname', $user->getFirstname());
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':age', $user->getAge());
         $stmt->bindValue(':mdf58_role_fk', $user->getRole());
 
         $result = $stmt->execute();

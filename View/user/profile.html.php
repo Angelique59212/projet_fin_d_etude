@@ -37,7 +37,7 @@ $user = $data['profile'];
 
         </div>
 
-        <a id="account-deletion" href="/index.php?c=user&a=delete-user&id=<?= $user->getId() ?>">Suppression du compte</a>
+        <a href="/index.php?c=user&a=delete-user&id=<?= $user->getId() ?>">Suppression du compte</a>
     </form>
 </div>
 

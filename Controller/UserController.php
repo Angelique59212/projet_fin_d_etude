@@ -19,7 +19,7 @@ class UserController extends AbstractController
         self::redirectIfConnected();
         if (isset($_POST['submit'])) {
             if (!$this->formIsset
-            ('email', 'firstname', 'lastname', 'password', 'password-repeat','age')) {
+            ('email', 'firstname', 'lastname', 'password', 'password-repeat')) {
                 header("Location: /?c=user&f=1");
             }
 
@@ -28,15 +28,12 @@ class UserController extends AbstractController
             $lastname = $this->dataClean(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
             $passwordRepeat = $_POST['password-repeat'];
-            $age = trim(filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT));
-
 
             $user = (new User())
                 ->setEmail($mail)
                 ->setFirstname($firstname)
                 ->setLastname($lastname)
                 ->setPassword($password)
-                ->setAge($age)
                 ->setRole(1)
                 ;
 
@@ -114,11 +111,12 @@ class UserController extends AbstractController
     /**
      * @return void
      */
-    public function saveForm() {
-        if (isset($_POST['email'])) {
+    public function saveForm()
+    {
+        if (isset($_POST['mail'])) {
             $name = trim(strip_tags($_POST['name']));
             $message = trim(strip_tags($_POST['message']));
-            $userMail = trim(strip_tags($_POST['email']));
+            $userMail = trim(strip_tags($_POST['mail']));
 
             $to = 'dehainaut.angelique@orange.fr';
             $subject = "Vous avez un message";
@@ -127,17 +125,16 @@ class UserController extends AbstractController
                 'X-Mailer' => 'PHP/' . phpversion()
             );
             if (filter_var($userMail, FILTER_VALIDATE_EMAIL)) {
-                if (strlen($message) >=20 && strlen($message) <= 250) {
+                if (strlen($message) >= 20 && strlen($message) <= 250) {
                     if (mail($to, $subject, $message, $headers, $userMail)) {
-                        $_SESSION['email'] = "mail-success";
+                        $_SESSION['mail'] = "mail-success";
                     } else {
-                        $_SESSION['email'] = "mail-error";
+                        $_SESSION['mail'] = "mail-error";
                     }
                     header('Location: /index.php?c=user&a=save-form');
                 }
             }
-        }
-        else {
+        } else {
             $this->render('form/contact');
         }
     }
