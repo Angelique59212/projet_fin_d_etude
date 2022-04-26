@@ -69,6 +69,15 @@ a {
     text-align: center;
 }
 
+#register-container {
+    border: 1px solid black;
+    width: 50vw;
+    margin: 0 auto;
+    border-radius: 3rem;
+    padding: 3rem;
+}
+
+
 #login-container input, #register-container input, #contact-container input, #profile-container input {
     margin: 1rem;
     width: 10vw;
@@ -76,8 +85,14 @@ a {
 }
 
 #register-container input {
-    display: block;
     margin: 0.4rem auto;
+    border-radius: 0.3rem;
+}
+
+label {
+    width: 12vw;
+    text-align: left;
+
 }
 
 #register-container #submit, #contact-container button, #profile-container .submit-button {
