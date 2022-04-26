@@ -10,6 +10,6 @@
             <input type="password" name="password" id="password" minlength="7" maxlength="70" required>
         </div>
 
-        <input value="Se connecter" class="submit-button" type="submit" name="submit" id="submit">
+        <input value="Se connecter" class="btn btn-secondary" type="submit" name="submit" id="submit">
     </form>
 </div>

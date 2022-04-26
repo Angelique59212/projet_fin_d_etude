@@ -17,7 +17,7 @@
                 </div>
 
                 <div>
-                    <button class="submit-button" type="submit" name="submit">Envoyer</button>
+                    <button class="btn btn-secondary" type="submit" name="submit" id="submit">Envoyer</button>
                 </div>
             </div>
         </form>

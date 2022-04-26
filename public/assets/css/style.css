@@ -85,32 +85,11 @@ a {
     text-align: center;
 }
 
-/* style button and input type submit */
-#submit, #contact-container button, #profile-container .submit-button {
+/* style button */
+#submit {
     padding: 0.5rem;
     font-size: 1.5rem;
     border-radius: 0.3rem;
-}
-
-.submit-button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #383838;
-    background-color: #dacccc;
-    border: none;
-}
-
-.submit-button:hover {background-color: #3e8e41}
-
-.submit-button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
 }
 
 /* Profile */
@@ -143,6 +122,13 @@ a {
     width: 1rem;
 }
 
+
+/* article home */
+.card {
+    width: 45vw;
+    margin: 1rem;
+    background: #d8d1c7;
+}
 
 
 

@@ -33,7 +33,7 @@ $user = $data['profile'];
                 <input type="text" name="email" value="<?= $user->getEmail() ?>">
             </div>
 
-            <input type="submit" name="submit" value="Modifier" class="submit-button">
+            <input type="submit" name="submit" value="Modifier" class="btn btn-secondary" id="submit">
 
         </div>
 
