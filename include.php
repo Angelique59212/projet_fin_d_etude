@@ -10,6 +10,7 @@ require __DIR__ .'/Model/Entity/Role.php';
 require __DIR__ .'/Model/Entity/User.php';
 
 require __DIR__ .'/Controller/AbstractController.php';
+require __DIR__ .'/Controller/ArticleController.php';
 require __DIR__ .'/Controller/HomeController.php';
 require __DIR__ .'/Controller/UserController.php';
 require __DIR__ .'/Controller/ErrorController.php';
