@@ -37,4 +37,18 @@
         </div>
     </div>
 
+    <!--Dysphasie -->
+    <div class="card">
+        <img class="card-img-top w-20" src="/assets/img/dysphasie/dysphasie.jpg" alt="enfant dysphasique">
+        <div class="card-body">
+            <h2 class="card-title fw-bold">Dysphasie</h2>
+            <p class="card-text">
+                La dysphasie est un trouble neurodéveloppemental du langage oral. Cela est du à un dysfonctionnement des
+                structures cérébral liés au langage.
+                Elle entraine un déficit au niveau de la production et/ou de la compréhension du langage et de la parole.
+                Il aura des difficultés à exprimer ce qu'il veut dire et à comprendre ce qu'on lui dit.
+            </p>
+            <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
+        </div>
+    </div>
 </div>
