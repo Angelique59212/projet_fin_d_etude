@@ -15,9 +15,9 @@
             <p class="card-text">
                 La dyslexie est un trouble spécifique des apprentissages avec déficit en lecture, trouble du langage qui se
                 manifestent par des confusions et inversions de sons et de lettres, l'enfant écrit lentement et de manière
-                parfois illisible, et son écrit s'accompagne de beaucoup de fautes d'orthographe.
+                parfois illisible, son écrit s'accompagne de beaucoup de fautes d'orthographe.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary"> En savoir plus</a>
+            <a id="learn" href="/index.php?c=article" class="btn btn-primary"> En savoir plus</a>
         </div>
     </div>
 
