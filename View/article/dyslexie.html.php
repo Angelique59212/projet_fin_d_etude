@@ -59,7 +59,6 @@
             <p>
                 La dyslexie ne se guérit pas, un accompagnement en orthophonie est nécessaire pour l'aider à revoir
                 les codes alphabétiques.
-
             </p>
         </div>
         <div class="image-symptom image-alphabet">
@@ -93,10 +92,4 @@
         </a>
         <a href="https://www.apedys.org/">Fédération ANAPEDYS</a>
     </div>
-
-
-
-
-
-
 </div>

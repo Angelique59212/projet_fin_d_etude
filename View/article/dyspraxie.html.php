@@ -4,7 +4,8 @@
         <p>
             La dyspraxie est un trouble des apprentissages qui perturbe le quotidien et la scolarité de l’enfant.
             Elle occasionne des difficultés dans les gestes, les jeux, l’écriture... Souvent dépistée à l’école,
-            un bilan médical est établi par une équipe pluridisciplinaire, permettant une approche globale des difficultés.
+            un bilan médical est établi par une équipe pluridisciplinaire, permettant une approche globale des
+            difficultés.
         </p>
     </div>
 
@@ -22,7 +23,8 @@
                 un stylo, règles, compas... Les jeux de construction sont compliqués.
                 Il préfère souvent manger avec ses doigts plutôt que la fourchette.
                 Des projets mathématique à l'école, surtout en géométrie seront compliquer.
-                Il aura du mal à faire deux choses en même temps, comme recopier ce qui est écrit au tableau et comprendre
+                Il aura du mal à faire deux choses en même temps, comme recopier ce qui est écrit au tableau et
+                comprendre
                 ce qu'il écrit.
             </p>
             <p>L'enfant aura tendance à s'isoler par manque de confiance en soi.</p>
@@ -43,8 +45,10 @@
             <p>
                 L'enfant peut bénéficier de plus de temps que les autres, pour effectuer ses tâches. Le maître peut lui
                 faire reformuler un énoncé, afin de s'assurer que l'élève est bien compris.
-                Le mâitre peut également et il est même recommandé de diviser par deux le travail à effectuer à la maison.
-                Il est important d'éviter les punitions, le recopiage d'un cours mal écrit afin que l'élève ne se décourage
+                Le mâitre peut également et il est même recommandé de diviser par deux le travail à effectuer à la
+                maison.
+                Il est important d'éviter les punitions, le recopiage d'un cours mal écrit afin que l'élève ne se
+                décourage
                 pas, il faut l'encourager, et lui dire ses progrès.
             </p>
             <p>
@@ -58,5 +62,49 @@
         <div class="image-dys">
             <img src="/assets/img/dyspraxie/bd_dyspraxie.jpg" alt="bd illustrant dyspraxie">
         </div>
+    </div>
+
+    <div class="container-second">
+        <div class="symptom">
+            <h3 class="definition">Peut-on en guérir ? Spécialistes pour l'accompagnement</h3>
+            <p>
+                Le traitement de la dyspraxie est surtout de la rééducation, on ne guérit pas de dyspraxie mais les
+                spécialistes permettent d'apprendre à vivre avec, ils les aident à mettre en place aides techniques, des
+                stratégies pour les aider dans leur vie quotidienne.
+            </p>
+            <p>
+                Les spécialistes pouvant intervenir sont: l'orthophiniste, la psychomotricienne, l'ergothérapeute,
+                l'orthoptiste, le podologue-posturologue.
+            </p>
+        </div>
+        <div class="image-symptom">
+            <img src="/assets/img/dyspraxie/dyspraxie2.jpg" alt="image specialiste dyspraxie">
+        </div>
+    </div>
+
+    <div class="container-second">
+        <div class="stars">
+            <h3 class="definition">Voici quelques Célébrités dyspraxique</h3>
+            <ul>
+                <li>Daniel Radcliffe</li>
+                <li>Jean Dujardin</li>
+                <li>Winston Churchill</li>
+                <li>Albert Einstein</li>
+            </ul>
+        </div>
+        <div class="image-symptom">
+            <img src="/assets/img/dyspraxie/radcliffe.jpg" alt="daniel radcliffe" id="star-dys">
+        </div>
+    </div>
+    
+    <div class="association">
+        <h3>Liens Concernant la Dyspraxie et quelques associations</h3>
+        <a href="https://www.ameli.fr/assure/sante/themes/dyspraxie-enfant/symptomes-diagnostic-evolution">
+            Dyspraxie: Site Améli
+        </a>
+        <a href="https://www.france-assos-sante.org/2018/03/07/la-dyspraxie-un-trouble-meconnu-un-handicap-invisible-de-la-vie-quotidienne/">
+            France Assos Santé
+        </a>
+        <a href="https://orthophonie.ooreka.fr/comprendre/dyspraxie">Ooreka: Comprendre la Dyspraxie</a>
     </div>
 </div>
