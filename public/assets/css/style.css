@@ -103,12 +103,9 @@ a {
     border-radius: 0.3rem;
 }
 
-
-
 label {
     width: 12vw;
     text-align: left;
-
 }
 
 #register-container #submit, #contact-container button, #profile-container .submit-button {
@@ -165,9 +162,26 @@ label {
     background: #d8d1c7;
 }
 
+#dys {
+    width: 25vw;
+}
+
+#def-dys {
+    width: 50vw;
+    margin: 0 auto;
+    color: indianred;
+    font-size: 1.9rem;
+}
+
 /* style article */
 .container {
     width: 100vw;
+}
+
+.container-dys {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 .website {
@@ -215,6 +229,9 @@ label {
     width: 33vw;
 }
 
+.image-dys img {
+    width: 40vw;
+}
 .symptom p {
     padding: 1rem;
 }
