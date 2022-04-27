@@ -11,7 +11,6 @@
         </p>
     </div>
 
-
     <div class="container-second">
         <div class="symptom">
             <h3 class="definition">Symptômes</h3>
