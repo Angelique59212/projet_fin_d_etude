@@ -28,6 +28,19 @@
 
     <div class="container-second">
         <div class="symptom">
+            <h3 class="definition">Comment aider un enfant dysphasique à l'école ?</h3>
+            <p>
+                Pour éviter de mettre l'enfant en difficulté, il y a quelques petits conseils qu'il est intéressant de
+                prendre en compte: ne lui donner qu'une seule consigne à la fois, lui faire reformuler ce que vous lui
+                avez donné comme consigne pour être sur qu'il est bien compris, mais aussi lui reformuler avec d'autres
+                mots dans le cas contraire.
+                Il est également important de lui réduire la quantité de devoirs.
+            </p>
+        </div>
+    </div>
+
+    <div class="container-second">
+        <div class="symptom">
             <h3 class="definition">Peut-on guérir de dysphasie et traitements</h3>
             <p>
                 On ne peut pas guérir de ce trouble, mais une rééducation orthophonique est nécessaire.
@@ -44,5 +57,23 @@
         <div class="image-symptom">
             <img src="/assets/img/dysphasie/dysphasie_alphabet.jpg" alt="dysphasie ecole">
         </div>
+    </div>
+
+    <div class="container-second">
+        <div class="video">
+            <h3 class="definition">Petite vidéo explicative:</h3>
+            <video class="player__video viewer" src="/assets/video/Dysphasie.mp4"></video>
+
+            <div class="player__controls">
+                <button class="player__button toggle" title="Toggle Play">►</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="association">
+        <h3>Liens concernant la Dysphasie</h3>
+        <a href="https://orthophonie.ooreka.fr/comprendre/dysphasie">Ooreka</a>
+        <a href="https://www.dys-positif.fr/scolarite-comment-aider-un-enfant-dysphasique/">Dys-positif</a>
+        <a href="https://www.dysphasie-quebec.com/en-definition/">Dysphasie Québéc</a>
     </div>
 </div>

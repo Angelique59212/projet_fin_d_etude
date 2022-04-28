@@ -217,10 +217,18 @@ label {
     padding: 0.8rem;
 }
 
-.symptom , .stars {
+.symptom , .stars, .video {
     margin: 1rem 7rem;
     padding: 1rem;
     border: 1px dashed black;
+}
+
+.video {
+    margin: 1.5rem auto;
+}
+
+.player__video {
+    padding: 1rem;
 }
 
 .image-symptom {
@@ -243,7 +251,7 @@ label {
     padding: 1rem;
 }
 
-.stars {
+.stars, .video {
     width: 53vw;
 }
 

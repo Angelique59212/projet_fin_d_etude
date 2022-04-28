@@ -7,3 +7,21 @@ if (close) {
         message.remove();
     })
 }
+
+//Video dysphasie//
+
+let player = $('.player__video').first();
+
+//create button pause and alternate between play and pause
+$("button").click(function (event) {
+    if($(this).is(".toggle")) {
+        player.trigger("play");
+        $(this).removeClass("toggle");
+        $(this).text("⏸")
+    }
+    else {
+        player.trigger("pause");
+        $(this).text("►");
+        $(this).addClass("toggle");
+    }
+})
