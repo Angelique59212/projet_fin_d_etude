@@ -37,6 +37,9 @@
                 Il est également important de lui réduire la quantité de devoirs.
             </p>
         </div>
+        <div class="image-symptom">
+            <img src="/assets/img/dysphasie/dysphasie-ecole.jpeg" alt="dysphasie ecole">
+        </div>
     </div>
 
     <div class="container-second">
@@ -55,7 +58,7 @@
             </p>
         </div>
         <div class="image-symptom">
-            <img src="/assets/img/dysphasie/dysphasie_alphabet.jpg" alt="dysphasie ecole">
+            <img src="/assets/img/dysphasie/dysphasie_alphabet.jpg" alt="dysphasie alphabet">
         </div>
     </div>
 

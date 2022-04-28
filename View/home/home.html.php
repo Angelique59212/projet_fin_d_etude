@@ -52,3 +52,54 @@
         </div>
     </div>
 </div>
+
+<div class="container-dys">
+    <!--Dysgraphie-->
+    <div class="card">
+        <img class="card-img-top w-20" src="/assets/img/dysgraphie/dysgraphie.jpg" alt="enfant et dysgraphie">
+        <div class="card-body">
+            <h2 class="card-title fw-bold">Dysgraphie</h2>
+            <p class="card-text">
+                La dysgraphie est un trouble qui affecte l'écriture ainsi que son tracé, l'écriture sera plus lente voir
+                même illisible.
+                Les lettres sont mal formées, il y a peu d'espace entre les mots. La dysgraphie entraîne un manque de
+                confiance en soi et une baisse de la réussite scolaire.
+                Elle ne dépend ni d'un déficit neurologie ni d'un déficit intellectuel.
+            </p>
+            <a href="/index.php?c=article" class="btn btn-primary more">En savoir plus</a>
+        </div>
+    </div>
+
+    <!--Dysorthographie-->
+    <div class="card">
+        <img src="/assets/img/dysorthographie/dysorthographie.jpeg" alt="enfant dysorthographique" class="card-image-top w-20">
+        <div class="card-body">
+            <h2 class="card-title fw-bold">Dysorthographie</h2>
+            <p class="card-text">
+                La dysothographie est un trouble de l'apprentissage orthographique. Ils n'assimilent pas les règles de
+                l'othographe.
+                La dysorthographie est aussi appelée: <span id="dysorthographie">trouble de l'acquisition de l'expression
+                écrite.</span>. Elle n'entraîne pas nécessairement de trouble de la lecture.
+                Les mots écrit ne sont pas forcément les sons que l'on entend.
+            </p>
+            <a href="/index.php?c=article" class="btn btn-primary more">En savoir plus</a>
+        </div>
+    </div>
+
+    <!--Dyscalculie-->
+    <div class="card">
+        <img id="image-dyscalculie" src="/assets/img/dyscalculie/dyscalculie.jpg" alt="dyscalculie de l'enfant" class="card-image-top w-20">
+        <div class="card-body">
+            <h2 class="card-title fw-bold">Dyscalculie</h2>
+            <p class="card-text">
+                La dyscalculie est un trouble spécifique de l'apprentissage en mathématique, particulièrement en calcul.
+                Ils ont une mauvaise percepetion du sens du nombre. Ces enfants auront des difficultés à retenir leur
+                table de multiplication et d'addition.Il peut être accompagné de trouble du langage et de coordination.
+                Ce trouble peut être associé à des anomalies cérébrales qui gère la perception des quantités, des
+                représentations visuelles ou l'expression verbale.
+            </p>
+            <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
+
+        </div>
+    </div>
+</div>
