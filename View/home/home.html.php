@@ -3,7 +3,9 @@
     Les troubles dys sont des troubles cognitifs qui entraînent des difficultés d'apprentissage.
     Ce sont des troubles persistant et durable, ils sont relatif au langage, à l'écriture, aux calculs, aux gestes et à
     l'attention.
-    A travers ce site vous en apprendrez plus sur les différents troubles.
+    A travers ce site vous en apprendrez plus sur les différents troubles.<br>
+    <span id="namely">A savoir:</span> Il n'est pas évident que les enfants est forcément tout les symptômes d'un trouble.
+    Les troubles dys sont des troubles durables.
 </p>
 
 <div class="container-dys">
@@ -99,7 +101,10 @@
                 représentations visuelles ou l'expression verbale.
             </p>
             <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
-
         </div>
     </div>
+</div>
+
+<div id="trouble-dys" class="image-symptom">
+    <img src="/assets/img/les_troubles_dys.jpg" alt="les troubles dys">
 </div>

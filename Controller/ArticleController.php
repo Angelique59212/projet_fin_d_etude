@@ -12,7 +12,7 @@ class ArticleController extends AbstractController
      */
     public function index()
     {
-        $this->render('article/dysorthographie');
+        $this->render('article/dyscalculie');
     }
 
 }

@@ -17,6 +17,7 @@ body {
 
 #logo {
     width: 25vw;
+    margin: 2rem;
 }
 
 /*Header and Footer */
@@ -174,6 +175,12 @@ label {
     margin-top: 2rem;
 }
 
+#namely {
+    font-weight: bold;
+    text-decoration: underline;
+    font-style: italic;
+}
+
 .more {
     margin-top: 5rem;
 }
@@ -189,6 +196,10 @@ label {
     font-weight: bold;
 }
 
+#trouble-dys {
+    margin: 0 50rem;
+}
+
 /* style article */
 .container {
     width: 100vw;
@@ -198,7 +209,7 @@ label {
     width: 100vw;
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding: 8rem;
 }
 
 .website {
