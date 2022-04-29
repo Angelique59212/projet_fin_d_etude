@@ -12,6 +12,11 @@ class User extends AbstractEntity
     private string $password;
     private array $role;
 
+    public function __construct()
+    {
+        $this->role = [];
+    }
+
     /**
      * @return array
      */
