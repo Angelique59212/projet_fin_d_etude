@@ -10,21 +10,21 @@ class User extends AbstractEntity
     private string $firstname;
     private string $lastname;
     private string $password;
-    private int $role;
+    private array $role;
 
     /**
-     * @return int
+     * @return array
      */
-    public function getRole(): int
+    public function getRole(): array
     {
         return $this->role;
     }
 
     /**
-     * @param int $role
+     * @param array $role
      * @return User
      */
-    public function setRole(int $role): self
+    public function setRole(array $role): self
     {
         $this->role = $role;
         return $this;

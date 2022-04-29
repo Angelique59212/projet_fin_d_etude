@@ -25,14 +25,19 @@
             <a href="/?c=home">Home</a>
             <a href="/?c=user&a=login">Login</a>
             <a href="/?c=user&a=register">Inscription</a>
-            <a href="/?c=article">Articles</a><?php
+            <a href="/?c=article&a=list-article">Articles</a><?php
         }
         else {
             $user = $_SESSION['user'];
             /* @var User $user */ ?>
             <a href="/?c=home">Home</a>
             <a href="/?c=user&a=show-user&id=<?= $user->getId() ?>">Mon profil</a>
+            <a href="/?c=article&a=list-article">Articles</a>
             <a href="/?c=user&a=disconnect">Déconnexion</a><?php
+        }
+
+        if (AbstractController::verifyRole()) {?>
+            <a href="/index.php?c=article&a=add-article">Ajouter un article</a> <?php
         }
         ?>
     </div>

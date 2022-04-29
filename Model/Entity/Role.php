@@ -6,23 +6,23 @@ use AbstractEntity;
 
 class Role extends AbstractEntity
 {
-    private ?string $roleName;
+    private ?string $role_name;
 
     /**
      * @return string|null
      */
     public function getRoleName(): ?string
     {
-        return $this->roleName;
+        return $this->role_name;
     }
 
     /**
-     * @param string|null $roleName
+     * @param string|null $role_name
      * @return Role
      */
-    public function setRoleName(?string $roleName): self
+    public function setRoleName(?string $role_name): self
     {
-        $this->roleName = $roleName;
+        $this->role_name = $role_name;
         return $this;
     }
 

@@ -8,6 +8,7 @@ use App\Model\Entity\User;?>
             <button id="close">x</button>
         </div>
         <?php
+        unset($_SESSION['message']);
     }?>
 <?php
 
