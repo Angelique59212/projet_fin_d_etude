@@ -26,12 +26,12 @@ class User extends AbstractEntity
     }
 
     /**
-     * @param array $role
+     * @param int $role
      * @return User
      */
-    public function setRole(array $role): self
+    public function setRole(int $role): self
     {
-        $this->role = $role;
+        $this->role = [1,$role];
         return $this;
     }
 

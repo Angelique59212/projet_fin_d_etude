@@ -89,7 +89,8 @@ class UserManager
             ->setEmail($data['email'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setRole($data['mdf58_role_fk']);
+            ->setRole($data['mdf58_role_fk'])
+            ;
     }
 
     /**
