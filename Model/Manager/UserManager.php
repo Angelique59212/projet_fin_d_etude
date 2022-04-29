@@ -51,6 +51,7 @@ class UserManager
                         ->setLastname($user['lastname'])
                         ->setPassword($user['password'])
                     ;
+                    $userSession->setRole(RoleManager::getRoleByUser($userSession));
 
                     if (!isset($_SESSION['user'])) {
                         $_SESSION['user'] = $userSession;
@@ -83,13 +84,13 @@ class UserManager
      */
     private static function makeUser(array $data): User
     {
-        return (new User())
+        $user = (new User())
             ->setId($data['id'])
             ->setPassword($data['password'])
             ->setEmail($data['email'])
             ->setLastname($data['lastname'])
-            ->setFirstname($data['firstname'])
-            ->setRole($data['mdf58_role_fk'])
+            ->setFirstname($data['firstname']);
+            return $user->setRole(RoleManager::getRoleByUser($user))
             ;
     }
 
@@ -124,11 +125,12 @@ class UserManager
             VALUES (:email, :firstname, :lastname, :password, :mdf58_role_fk)
         ");
 
+        $role = 1;
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':firstname', $user->getFirstname());
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':mdf58_role_fk', $user->getRole());
+        $stmt->bindValue(':mdf58_role_fk', $role);
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());

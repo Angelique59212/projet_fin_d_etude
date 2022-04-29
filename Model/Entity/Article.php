@@ -9,15 +9,26 @@ class Article extends AbstractEntity
 {
     private string $title;
     private string $content;
-    private \DateTime $dateAdd;
-    private \DateTime $dateUpdate;
-    private User $author;
+    private string $summary;
 
-    public function __construct()
+    /**
+     * @return string
+     */
+    public function getSummary(): string
     {
-        $this->dateAdd = new DateTime();
-        $this->dateUpdate = new DateTime();
+        return $this->summary;
     }
+
+    /**
+     * @param string $summary
+     * @return Article
+     */
+    public function setSummary(string $summary): self
+    {
+        $this->summary = $summary;
+        return $this;
+    }
+    private User $author;
 
     /**
      * @return string
@@ -56,42 +67,6 @@ class Article extends AbstractEntity
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getDateAdd(): \DateTime
-    {
-        return $this->dateAdd;
-    }
-
-    /**
-     * @param \DateTime $dateAdd
-     * @return Article
-     */
-    public function setDateAdd(\DateTime $dateAdd): self
-    {
-        $this->dateAdd = $dateAdd;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDateUpdate(): \DateTime
-    {
-        return $this->dateUpdate;
-    }
-
-    /**
-     * @param \DateTime $dateUpdate
-     * @return Article
-     */
-    public function setDateUpdate(\DateTime $dateUpdate): self
-    {
-        $this->dateUpdate = $dateUpdate;
-        return $this;
-    }
-
-    /**
      * @return User
      */
     public function getAuthor(): User
@@ -108,6 +83,4 @@ class Article extends AbstractEntity
         $this->author = $author;
         return $this;
     }
-
-
 }

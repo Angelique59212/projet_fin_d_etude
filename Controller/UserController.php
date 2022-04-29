@@ -34,7 +34,6 @@ class UserController extends AbstractController
                 ->setFirstname($firstname)
                 ->setLastname($lastname)
                 ->setPassword($password)
-                ->setRole(1)
                 ;
 
             if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {

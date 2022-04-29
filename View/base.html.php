@@ -64,7 +64,11 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/assets/js/app.js"></script>
-
+<script
+        src="https://cdn.tiny.cloud/1/go0ei34667b0j3tmim9m5wd5zfyaq0o0981rn9d13939fjx5/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin">
+</script>
+<script src="/assets/js/tiny.js"></script>
 
 </body>
 </html>

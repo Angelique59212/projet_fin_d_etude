@@ -14,28 +14,8 @@ class User extends AbstractEntity
 
     public function __construct()
     {
-        $this->role = [];
+        $this->role= [];
     }
-
-    /**
-     * @return array
-     */
-    public function getRole(): array
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param int $role
-     * @return User
-     */
-    public function setRole(int $role): self
-    {
-        $this->role = [1,$role];
-        return $this;
-    }
-
-
 
     /**
      * @return string
@@ -106,6 +86,24 @@ class User extends AbstractEntity
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRole(): array
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param array|null $role
+     * @return User
+     */
+    public function setRole(?array $role): self
+    {
+        $this->role = $role;
         return $this;
     }
 }

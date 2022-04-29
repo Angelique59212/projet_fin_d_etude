@@ -43,20 +43,23 @@ class ArticleController extends AbstractController
             $user = UserManager::getUserById($userSession->getId());
 
             $title = $this->dataClean($this->getFormField('title'));
+            $summary = $this->dataClean($this->getFormField('summary'));
             $content = $this->dataClean($this->getFormField('content'));
 
             $article = new Article();
             $article
                 ->setTitle($title)
+                ->setSummary($summary)
                 ->setContent($content)
                 ->setAuthor($user)
             ;
 
-            if (ArticleManager::addNewArticle($article, $title, $content, $_SESSION['user']->getId())) {
+            if (ArticleManager::addNewArticle($article, $title,$summary, $content, $_SESSION['user']->getId())) {
                 $this->render('article/list-article');
             }
+        }else {
+            $this->render('article/add-article');
         }
-        $this->render('article/add-article');
     }
 
     /**

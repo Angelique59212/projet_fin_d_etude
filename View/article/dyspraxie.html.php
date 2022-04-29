@@ -1,12 +1,11 @@
 <div class="container">
     <div class="container-definition">
         <h2 class="definition">Définition de la Dyspraxie (<span class="website">Site Amélie</span>)</h2>
-        <p>
-            La dyspraxie est un trouble des apprentissages qui perturbe le quotidien et la scolarité de l’enfant.
-            Elle occasionne des difficultés dans les gestes, les jeux, l’écriture... Souvent dépistée à l’école,
-            un bilan médical est établi par une équipe pluridisciplinaire, permettant une approche globale des
-            difficultés.
-        </p>
+<!--        <form action="" method="post">-->
+<!--            <textarea name="editor" id="editor" cols="30" rows="10"></textarea>-->
+<!--            <input type="submit" id="valid" name="valid" value="Envoyer">-->
+<!--        </form>-->
+
     </div>
 
     <div class="container-second">

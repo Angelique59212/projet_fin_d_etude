@@ -21,7 +21,7 @@ class RoleManager
         $roles = [];
         $query = Connect::dbConnect()->query("
             SELECT * FROM mdf58_role
-                        WHERE id IN (SELECT role_fk FROM mdf58_user WHERE id = {$user->getId()})");
+                        WHERE id IN (SELECT mdf58_role_fk FROM mdf58_user WHERE id = {$user->getId()})");
         if($query){
             foreach($query->fetchAll() as $roleData) {
                 $roles[] = (new Role())

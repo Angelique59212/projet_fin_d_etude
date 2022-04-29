@@ -18,16 +18,13 @@ class ArticleManager
         $query = Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
         if ($query) {
             $userManager = new UserManager();
-            $format = 'Y-m-d H:i:s';
-
             foreach ($query->fetchAll() as $articleData) {
                 $articles[] = (new Article())
                     ->setId($articleData['id'])
                     ->setAuthor(UserManager::getUserById($articleData['mdf58_user_fk']))
                     ->setContent($articleData['content'])
                     ->setTitle($articleData['title'])
-                    ->setDateAdd($articleData['date_add'])
-                    ->setDateUpdate($articleData['date_update'])
+                    ->setSummary($articleData['summary'])
                 ;
             }
         }
@@ -38,18 +35,20 @@ class ArticleManager
     /**
      * @param Article $article
      * @param string $title
+     * @param string $summary
      * @param string $content
      * @param int $id
      * @return bool
      */
-    public static function addNewArticle(Article &$article, string $title, string $content, int $id):bool
+    public static function addNewArticle(Article &$article, string $title,string $summary, string $content, int $id):bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " .self::TABLE . " (title, content, mdf58_user_fk)
-            VALUES (:title, :content, :mdf58_user_fk)
+            INSERT INTO " .self::TABLE . " (title,summary, content, mdf58_user_fk)
+            VALUES (:title,:summary, :content, :mdf58_user_fk)
         ");
 
         $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':summary', $summary);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':mdf58_user_fk', $id);
 
