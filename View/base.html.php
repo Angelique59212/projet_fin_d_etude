@@ -22,7 +22,10 @@
         use App\Model\Entity\User;
 
         if (!isset($_SESSION['user'])) {?>
-            <a href="/?c=home">Home</a><a href="/?c=user&a=login">Login</a>/<a href="/?c=user&a=register">Inscription</a><?php
+            <a href="/?c=home">Home</a>
+            <a href="/?c=user&a=login">Login</a>
+            <a href="/?c=user&a=register">Inscription</a>
+            <a href="/?c=article">Articles</a><?php
         }
         else {
             $user = $_SESSION['user'];

@@ -57,11 +57,11 @@ a {
 
 #title-menu {
     text-align: center;
-    padding: 1rem;
+    padding: 8rem;
 }
 
 #title-menu h1 {
-    font-size: 3.2rem;
+    font-size: 5rem;
     font-weight: bold;
 }
 
@@ -200,6 +200,15 @@ label {
     margin: 0 50rem;
 }
 
+#image-trouble {
+    display: flex;
+    justify-content: center;
+}
+
+#image-trouble img {
+    width: 35vw;
+}
+
 /* style article */
 .container {
     width: 100vw;
@@ -261,9 +270,6 @@ label {
     width: 35vw;
 }
 
-#image-dyscalculie {
-    height: 23rem;
-}
 
 .image-alphabet img {
     width: 33vw;

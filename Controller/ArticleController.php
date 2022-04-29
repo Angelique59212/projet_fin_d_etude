@@ -12,7 +12,11 @@ class ArticleController extends AbstractController
      */
     public function index()
     {
-        $this->render('article/dyscalculie');
+        $this->render('home/home');
+    }
+
+    public function page($action){
+       $this->render('article/' . $action);
     }
 
 }

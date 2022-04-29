@@ -19,7 +19,7 @@
                 manifestent par des confusions et inversions de sons et de lettres, l'enfant écrit lentement et de manière
                 parfois illisible, son écrit s'accompagne de beaucoup de fautes d'orthographe.
             </p>
-            <a id="learn" href="/index.php?c=article" class="btn btn-primary"> En savoir plus</a>
+            <a id="learn" href="/index.php?c=article&a=page&action=dyslexie" class="btn btn-primary"> En savoir plus</a>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
                 la planification, les réalisations des gestes quotidiens. Les reproductions de formes graphique seront
                 difficile pour lui.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
+            <a href="/index.php?c=article&a=page&action=dyspraxie" class="btn btn-primary">En savoir plus</a>
         </div>
     </div>
 
@@ -50,7 +50,7 @@
                 Elle entraine un déficit au niveau de la production et/ou de la compréhension du langage et de la parole.
                 Il aura des difficultés à exprimer ce qu'il veut dire et à comprendre ce qu'on lui dit.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
+            <a href="/index.php?c=article&a=page&action=dysphasie" class="btn btn-primary">En savoir plus</a>
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
                 confiance en soi et une baisse de la réussite scolaire.
                 Elle ne dépend ni d'un déficit neurologie ni d'un déficit intellectuel.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary more">En savoir plus</a>
+            <a href="/index.php?c=article&a=page&action=dysgraphie" class="btn btn-primary more">En savoir plus</a>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
                 écrite.</span>. Elle n'entraîne pas nécessairement de trouble de la lecture.
                 Les mots écrit ne sont pas forcément les sons que l'on entend.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary more">En savoir plus</a>
+            <a href="/index.php?c=article&a=page&action=dysorthographie" class="btn btn-primary more">En savoir plus</a>
         </div>
     </div>
 
@@ -100,11 +100,11 @@
                 Ce trouble peut être associé à des anomalies cérébrales qui gère la perception des quantités, des
                 représentations visuelles ou l'expression verbale.
             </p>
-            <a href="/index.php?c=article" class="btn btn-primary">En savoir plus</a>
+            <a href="/index.php?c=article&a=page&action=dyscalculie" class="btn btn-primary">En savoir plus</a>
         </div>
     </div>
 </div>
 
-<div id="trouble-dys" class="image-symptom">
+<div id="image-trouble">
     <img src="/assets/img/les_troubles_dys.jpg" alt="les troubles dys">
 </div>

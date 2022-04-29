@@ -73,7 +73,7 @@
 
     <div class="container-second">
         <div class="stars">
-            <h3>Quelques célébrités souffrant d'une Dyscalculie</h3>
+            <h3 class="definition">Quelques célébrités souffrant d'une Dyscalculie</h3>
             <ul>
                 <li>Isaac Newton</li>
                 <li>Benjamin Franklin</li>
