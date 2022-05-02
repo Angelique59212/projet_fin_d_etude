@@ -69,7 +69,7 @@ class ArticleController extends AbstractController
      */
     public function listArticle() {
         $this->render('article/list-article', [
-            'articles' => ArticleManager::findAll(),
+            'article' => ArticleManager::findAll(),
         ]);
     }
 
@@ -83,7 +83,7 @@ class ArticleController extends AbstractController
             header("Location: /index.php?c=home");
         }
         if (ArticleManager::articleExists($id)) {
-            $this->render('article/article', [
+            $this->render('article/list-article', [
                 "article" => ArticleManager::getArticleById($id),
             ]);
         } else {
