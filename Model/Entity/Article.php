@@ -3,13 +3,16 @@
 namespace App\Model\Entity;
 
 use AbstractEntity;
-use DateTime;
+
 
 class Article extends AbstractEntity
 {
     private string $title;
     private string $content;
     private string $summary;
+    private string $image;
+
+
 
     /**
      * @return string
@@ -28,6 +31,7 @@ class Article extends AbstractEntity
         $this->summary = $summary;
         return $this;
     }
+
     private User $author;
 
     /**
@@ -81,6 +85,24 @@ class Article extends AbstractEntity
     public function setAuthor(User $author): self
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     * @return Article
+     */
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 }

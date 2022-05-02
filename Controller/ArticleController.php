@@ -44,17 +44,19 @@ class ArticleController extends AbstractController
 
             $title = $this->dataClean($this->getFormField('title'));
             $summary = $this->dataClean($this->getFormField('summary'));
+            $image = $this->dataClean($this->getFormField('image'));
             $content = $this->dataClean($this->getFormField('content'));
 
             $article = new Article();
             $article
                 ->setTitle($title)
                 ->setSummary($summary)
+                ->setImage($image)
                 ->setContent($content)
                 ->setAuthor($user)
             ;
 
-            if (ArticleManager::addNewArticle($article, $title,$summary, $content, $_SESSION['user']->getId())) {
+            if (ArticleManager::addNewArticle($article, $title,$summary,$image, $content, $_SESSION['user']->getId())) {
                 $this->render('article/list-article');
             }
         }else {
@@ -71,5 +73,22 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     */
+    public function showArticle(int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /index.php?c=home");
+        }
+        if (ArticleManager::articleExists($id)) {
+            $this->render('article/article', [
+                "article" => ArticleManager::getArticleById($id),
+            ]);
+        } else {
+            $this->index();
+        }
 
+    }
 }

@@ -6,6 +6,10 @@
             <input type="text" name="title" id="title">
         </div>
         <div>
+            <label for="access-path">Chemin d'accès à l'image</label>
+            <input type="text" name="access-path" id="access-path">
+        </div>
+        <div>
             <label for="summary">Résumé:</label>
             <input type="text" name="summary" id="summary">
         </div>

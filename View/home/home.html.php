@@ -21,13 +21,13 @@ if (isset($data['articles']))
     <div class="container-dys">
         <!-- Dyslexie -->
         <div class="card">
-            <img class="card-img-top w-30" src="/assets/img/dyslexie/dyslexie.jpg" alt="image enfant dyslexique">
+            <img class="card-img-top w-30" src="<?= $article->getImage() ?>" alt="image enfant dyslexique">
             <div class="card-body">
                 <h2 class="card-title fw-bold"><?= $article->getTitle()?></h2>
                 <p class="card-text">
                     <?= $article->getSummary() ?>
                 </p>
-                <a id="learn" href="/index.php?c=article&a=page&action=dyslexie" class="btn btn-primary"> En savoir plus</a>
+                <a id="learn" href="/index.php?c=article&a=show-article&id=<?= $article->getId()?>" class="btn btn-primary"> En savoir plus</a>
             </div>
         </div>
     </div><?php
