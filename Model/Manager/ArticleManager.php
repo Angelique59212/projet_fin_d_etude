@@ -94,4 +94,37 @@ class ArticleManager
             ->setAuthor(UserManager::getUserById($data['mdf58_user_fk']))
             ;
     }
+
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $content
+     * @return void
+     */
+    public static function editArticle(int $id, string $title,string $summary, string $content)
+    {
+        $stmt = Connect::dbConnect()->prepare("
+            UPDATE " . self::TABLE . " SET title= :title,summary= :summary, content = :content WHERE id = :id
+                ");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':summary', $summary);
+        $stmt->bindParam(':content', $content);
+
+        $stmt->execute();
+    }
+
+    /**
+     * @param Article|null $article
+     * @return false|int
+     */
+    public static function deleteArticle(?Article $article)
+    {
+        if (self::articleExists($article->getId())) {
+            return Connect::dbConnect()->exec("
+            DELETE FROM " . self::TABLE . " WHERE id = {$article->getId()}
+        ");
+        }
+        return false;
+    }
 }

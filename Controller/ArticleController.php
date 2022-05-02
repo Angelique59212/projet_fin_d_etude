@@ -89,6 +89,39 @@ class ArticleController extends AbstractController
         } else {
             $this->index();
         }
+    }
 
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function deleteArticle(int $id) {
+        if (ArticleManager::articleExists($id)) {
+            $article = ArticleManager::getArticleById($id);
+            $deleted = ArticleManager::deleteArticle($article);
+            header('Location: /index.php?c=article&a=list-article');
+        }
+        $this->index();
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function editArticle(int $id)
+    {
+        if (isset($_POST['save'])) {
+            if (ArticleManager::articleExists($id)) {
+                $title = $this->dataClean($this->getFormField('title'));
+                $summary = $this->dataClean($this->getFormField('summary'));
+                $content = $this->dataClean($this->getFormField('content'));
+
+                ArticleManager::editArticle($id, $title, $summary, $content);
+                header('Location: /index.php?c=article&a=list-article');
+            }
+        }
+        $this->render('article/edit-article', [
+            'article'=>ArticleManager::getArticleById($id)
+        ]);
     }
 }
