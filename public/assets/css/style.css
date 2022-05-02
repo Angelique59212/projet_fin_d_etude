@@ -160,6 +160,8 @@ label {
 .container-home {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .card {
@@ -225,10 +227,10 @@ label {
 }
 
 .container-dys {
-    width: 100vw;
+    width: 32vw;
     display: flex;
     justify-content: center;
-    padding: 8rem;
+    padding: 3rem;
 }
 
 .website {
