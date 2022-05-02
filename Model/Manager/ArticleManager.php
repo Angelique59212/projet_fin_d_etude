@@ -44,8 +44,8 @@ class ArticleManager
     public static function addNewArticle(Article &$article, string $title,string $summary,string $image, string $content, int $id):bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " .self::TABLE . " (title,summary,image, content, mdf58_user_fk)
-            VALUES (:title,:summary, :content, :mdf58_user_fk)
+            INSERT INTO " .self::TABLE . " (title,summary,image,content, mdf58_user_fk)
+            VALUES (:title,:summary,:image, :content, :mdf58_user_fk)
         ");
 
         $stmt->bindParam(':title', $title);

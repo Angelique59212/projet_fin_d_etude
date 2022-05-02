@@ -157,6 +157,11 @@ label {
 
 
 /* article home */
+.container-home {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .card {
     width: 45vw;
     margin: 1rem;
@@ -179,6 +184,11 @@ label {
     font-weight: bold;
     text-decoration: underline;
     font-style: italic;
+}
+
+#summary {
+    width: 20vw;
+    height: 20vh;
 }
 
 .more {
