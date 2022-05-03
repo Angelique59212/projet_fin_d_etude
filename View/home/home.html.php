@@ -21,25 +21,6 @@ if (isset($data['articles']))
     <div class="container-dys">
         <div class="card">
             <img class="card-img-top w-30" src="<?= $article->getImage() ?>" alt="image enfant">
-            <?php
-            if (isset($_FILES['access-path']) && $_FILES['access-path']['error'] === 0) {
-                $allowedMimeTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-                if (in_array($_FILES['access-path']['type'], $allowedMimeTypes)) {
-                    $tmp_name = $_FILES['access-path']['tmp_name'];
-                    $name = $_FILES['access-path']['name'];
-                    if (!is_dir('uploads')) {
-                        mkdir('uploads','0755');
-                    }
-                    move_uploaded_file($tmp_name, $name);
-                }
-                else {
-                    echo "Vous avez fourni un mauvais type de fichier";
-                }
-            }
-            else {
-                echo "Une erreur s'est produite";
-            }
-            ?>
 
             <div class="card-body">
                 <h2 class="card-title fw-bold"><?= $article->getTitle()?></h2>

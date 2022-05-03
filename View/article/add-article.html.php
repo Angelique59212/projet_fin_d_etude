@@ -6,8 +6,8 @@
             <input type="text" name="title" id="title">
         </div>
         <div>
-            <label for="access-path">Chemin d'accès à l'image</label>
-            <input type="file" name="access-path" id="access-path">
+            <label for="image">Chemin d'accès à l'image</label>
+            <input type="file" name="image" id="image">
         </div>
         <div>
             <label for="summary">Résumé:</label>
@@ -20,4 +20,5 @@
 
         <input type="submit" name="save" value="Enregistrer" class="save btn btn-secondary">
     </form>
+
 </div>

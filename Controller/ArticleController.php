@@ -44,7 +44,7 @@ class ArticleController extends AbstractController
 
             $title = $this->dataClean($this->getFormField('title'));
             $summary = $this->dataClean($this->getFormField('summary'));
-            $image = $this->dataClean($this->getFormField('image'));
+            $image = $this->dataClean($this->getFormFieldImage('image'));
             $content = $this->dataClean($this->getFormField('content'));
 
             $article = new Article();
@@ -83,7 +83,7 @@ class ArticleController extends AbstractController
             header("Location: /index.php?c=home");
         }
         if (ArticleManager::articleExists($id)) {
-            $this->render('article/list-article', [
+            $this->render('article/show-article', [
                 "article" => ArticleManager::getArticleById($id),
             ]);
         } else {

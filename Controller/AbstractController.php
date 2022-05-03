@@ -96,6 +96,24 @@ abstract class AbstractController
     }
 
     /**
+     * @param string $field
+     * @param $default
+     * @return mixed|string
+     */
+    public function getFormFieldImage(string $field, $default = null)
+    {
+        $tmpName = $_FILES['file']['tmp_name'];
+        $name = $_FILES['file']['name'];
+        if (!isset($_FILES[$field]['name'])) {
+            return (null === $default) ? '' : $default;
+        }
+        move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$_FILES[$field]['name']);
+        return basename($_FILES[$field]['name']);
+
+    }
+
+
+    /**
      * @return bool
      */
     public static function verifyUserConnect(): bool
