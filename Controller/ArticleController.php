@@ -57,7 +57,7 @@ class ArticleController extends AbstractController
             ;
 
             if (ArticleManager::addNewArticle($article, $title,$summary,$image, $content, $_SESSION['user']->getId())) {
-                $this->render('article/list-article');
+                header('Location: /index.php?c=article&a=list-article');
             }
         }else {
             $this->render('article/add-article');

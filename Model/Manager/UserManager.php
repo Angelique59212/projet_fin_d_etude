@@ -125,12 +125,11 @@ class UserManager
             VALUES (:email, :firstname, :lastname, :password, :mdf58_role_fk)
         ");
 
-        $role = 1;
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':firstname', $user->getFirstname());
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':mdf58_role_fk', $role);
+        $stmt->bindValue(':mdf58_role_fk', 1);
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());
@@ -167,8 +166,6 @@ class UserManager
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
-
-        ;
 
         $stmt->execute();
     }
