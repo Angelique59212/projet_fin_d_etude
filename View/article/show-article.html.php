@@ -15,7 +15,7 @@ $article = $data['article']; ?>
 
 <h1>Article</h1>
 
-<?= $article->getId() ?>
+<?= $article->getTitle() ?>
 <?= $article->getContent() ?>
 
 

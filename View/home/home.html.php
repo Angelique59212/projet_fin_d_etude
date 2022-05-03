@@ -20,7 +20,7 @@ if (isset($data['articles']))
     /* @var Article $article */?>
     <div class="container-dys">
         <div class="card">
-            <img class="card-img-top w-30" src="<?= $article->getImage() ?>" alt="image enfant">
+            <img class="card-img-top w-30" src="uploads/<?= $article->getImage() ?>" alt="image enfant">
 
             <div class="card-body">
                 <h2 class="card-title fw-bold"><?= $article->getTitle()?></h2>
