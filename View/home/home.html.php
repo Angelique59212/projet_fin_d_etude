@@ -19,7 +19,6 @@ if (isset($data['articles']))
     foreach ($articles as $article) {
     /* @var Article $article */?>
     <div class="container-dys">
-        <!-- Dyslexie -->
         <div class="card">
             <img class="card-img-top w-30" src="<?= $article->getImage() ?>" alt="image enfant">
             <?php
