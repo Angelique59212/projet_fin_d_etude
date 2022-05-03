@@ -14,6 +14,7 @@ if (isset($data['article'])) { ?>
             <p id="author"><?= $article->getAuthor()->getFirstname() ?></p><?php
 
             if (AbstractController::verifyRole()) { ?>
+                <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir plus</a>
                 <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a>
                 <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier</a><?php
             }
