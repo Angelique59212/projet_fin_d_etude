@@ -165,21 +165,21 @@ label {
 }
 
 .card {
-    width: 45vw;
+    width: 31vw;
     margin: 1rem;
     background: #d8d1c7;
 }
 
+.card-body {
+    padding: 2rem;
+}
+
+.card-text {
+    height: 30vh;
+}
+
 #dys {
     width: 25vw;
-}
-
-.card {
-    width: 31vw;
-}
-
-#learn {
-    margin-top: 2rem;
 }
 
 #namely {
@@ -316,6 +316,18 @@ label {
     display: block;
     margin: 0.4rem;
 }
+
+/* list article */
+#container-article {
+    text-align: center;
+    border: 1px solid black;
+}
+
+#title {
+    color: indianred;
+}
+
+
 
 
 

@@ -104,14 +104,13 @@ abstract class AbstractController
     {
         $tmpName = $_FILES['file']['tmp_name'];
         $name = $_FILES['file']['name'];
+
         if (!isset($_FILES[$field]['name'])) {
             return (null === $default) ? '' : $default;
         }
         move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$_FILES[$field]['name']);
         return basename($_FILES[$field]['name']);
-
     }
-
 
     /**
      * @return bool
@@ -119,21 +118,6 @@ abstract class AbstractController
     public static function verifyUserConnect(): bool
     {
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
-    }
-
-    /**
-     * @param string $value
-     * @param int $min
-     * @param int $max
-     * @param string $redirect
-     * @return void
-     */
-    public function checkRange(string $value, int $min, int $max, string $redirect): void
-    {
-        if (strlen($value) < $min || strlen($value) > $max) {
-            header("Location: " . $redirect);
-            exit();
-        }
     }
 
     /**
