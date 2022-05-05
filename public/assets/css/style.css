@@ -318,9 +318,20 @@ label {
 }
 
 /* list article */
+
 #container-article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#article-show {
     text-align: center;
     border: 1px solid black;
+    margin: 2rem;
+    padding: 2rem;
+    width: 50vw;
+    border-radius: 2rem;
 }
 
 #title {
@@ -331,6 +342,22 @@ label {
     color: #948e89;
 }
 
+/* page article */
+#show-article {
+   text-align: center;
+}
+
+#content {
+    margin: 2rem;
+}
+
+#title-article {
+    color: indianred;
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
 
 
 

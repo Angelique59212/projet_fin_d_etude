@@ -13,6 +13,13 @@ else {
 /* @var Article $article */
 $article = $data['article']; ?>
 
-<?= $article->getTitle() ?>
-<?= $article->getContent() ?>
+<div id="show-article">
+    <div id="title-article">
+        <?= $article->getTitle() ?>
+    </div>
+    <div id="content">
+        <?= $article->getContent() ?>
+    </div>
+</div>
+
 
