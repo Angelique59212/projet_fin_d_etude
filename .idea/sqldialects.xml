@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Model/Manager/ArticleManager.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/Model/Manager/CommentManager.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/Model/Manager/RoleManager.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/Model/Manager/UserManager.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/View/article/add-article.html.php" dialect="GenericSQL" />

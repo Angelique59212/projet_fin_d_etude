@@ -13,16 +13,16 @@ $articles = $data['article'];
             /* @var Article $article */ ?>
                 <div id="article-show">
                     <p id="title"><?= $article->getTitle() ?></p>
-                    <p id="author"><?= $article->getAuthor()->getFirstname() ?></p><?php
-
+                    <p id="author"><?= $article->getAuthor()->getFirstname() ?></p>
+                    <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir plus</a>
+            <?php
 
             if (AbstractController::verifyRole()) { ?>
-                <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir plus</a>
                 <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a>
                 <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier</a>
-                </div>
-    <?php
+                </div><?php
             }
         }
-}?>
+    }?>
 </div>
+
