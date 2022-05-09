@@ -16,8 +16,8 @@ $article = $data['article'];
             <input type="text" name="summary" id="summary" cols="30" row="10">
         </div>
         <div>
-            <label for="content">Contenu</label>
-            <textarea name="content" id="content" cols="30" rows="20"><?= $article->getContent() ?></textarea>
+            <label for="editor">Contenu</label>
+            <textarea name="content" id="editor" cols="30" rows="20"><?= $article->getContent() ?></textarea>
         </div>
 
         <input type="submit" name="save" value="Valider" class="save">

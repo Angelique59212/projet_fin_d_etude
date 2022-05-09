@@ -45,7 +45,7 @@ class ArticleController extends AbstractController
             $title = $this->dataClean($this->getFormField('title'));
             $summary = $this->dataClean($this->getFormField('summary'));
             $image = $this->dataClean($this->getFormFieldImage('image'));
-            $content = $this->dataClean($this->getFormField('content'));
+            $content = $this->getFormField('content');
 
             $article = new Article();
             $article

@@ -99,7 +99,6 @@ class ArticleManager
      * @param int $id
      * @param string $title
      * @param string $summary
-     * @param string $image
      * @param string $content
      * @return void
      */

@@ -19,7 +19,8 @@ $article = $data['article']; ?>
         <?= $article->getTitle() ?>
     </div>
     <div id="content">
-        <?= $article->getContent() ?>
+
+        <?= html_entity_decode($article->getContent()) ?>
     </div>
     <div id="comment">
         <span id="comments">Commentaires:</span><?php
