@@ -1,12 +1,13 @@
 <?php
 
 use App\Model\Entity\Article;
+use App\Model\Entity\Comment;
+use App\Model\Manager\CommentManager;
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $stmt = "SELECT * FROM mdf58_article WHERE id =" . $_GET['id'];
 
-}
-else {
+} else {
     header('Location: home');
 }
 
@@ -20,6 +21,20 @@ $article = $data['article']; ?>
     <div id="content">
         <?= $article->getContent() ?>
     </div>
-</div>
+    <div id="comment">
+        <span id="comments">Commentaires:</span><?php
+        foreach (CommentManager::getCommentByArticle($article) as $item) {
+            /* @var Comment $item */ ?>
+
+            <p><?= $item->getAuthor()->getFirstname() ?></p>
+            <p><?= $item->getContent() ?></p><?php
+            if (AbstractController::verifyRole()) { ?>
+            <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer le
+                    commentaire</a><?php
+            }
+        }
+        ?>
+    </div>
+<a href="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>">Ajouter un commentaire</a><?php
 
 
