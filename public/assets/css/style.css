@@ -118,6 +118,10 @@ label {
     text-align: center;
 }
 
+#container-contact {
+    padding: 8rem;
+}
+
 /* style button */
 #submit {
     padding: 0.5rem;
@@ -130,8 +134,8 @@ label {
     width: 15vw;
 }
 
-#title-profile {
-    text-align: center;
+#profile-container {
+    padding: 5rem;
 }
 
 /* Validate modify profile */
@@ -247,6 +251,7 @@ label {
 
 #title {
     color: indianred;
+    font-size: 2rem;
 }
 
 #author {
@@ -254,6 +259,18 @@ label {
 }
 
 /* page article */
+
+#form-addArticle {
+    padding: 8rem;
+}
+
+#form-addArticle input {
+    margin: 0.8rem;
+}
+
+#btn-addArticle, #btn-contact {
+    font-size: 1.3rem;
+}
 
 #content {
     margin: 2rem;
@@ -266,6 +283,50 @@ label {
     text-transform: uppercase;
     text-decoration: underline;
 }
+
+/* comment */
+
+#title-comment, #title-addArticle, #title-contact, #title-profile {
+    width: 50vw;
+    color: indianred;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px,
+    rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
+}
+
+#comments {
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 2rem;
+}
+
+#comment div {
+    padding: 2rem;
+}
+
+#author-comment {
+    font-style: italic;
+    color: #878279;
+}
+
+#remove-comment {
+    text-align: center;
+
+}
+
+.style-comment, #register {
+    width: 50vw;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#register {
+    text-align: center;
+    padding: 1rem;
+}
+
+
 
 
 

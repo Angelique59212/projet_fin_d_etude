@@ -1,4 +1,7 @@
-<h1>Ajouter un article</h1>
+<div id="title-addArticle">
+    <h1>Ajouter un article</h1>
+</div>
+
 <div id="form-addArticle">
     <form action="/index.php?c=article&a=add-article" method="post" enctype="multipart/form-data">
         <div>
@@ -18,7 +21,7 @@
             <textarea name="content" id="editor" cols="30" rows="10"></textarea>
         </div>
 
-        <input type="submit" name="save" value="Enregistrer" class="save btn btn-secondary">
+        <input id="btn-addArticle" type="submit" name="save" value="Enregistrer" class="btn btn-secondary">
     </form>
 
 </div>

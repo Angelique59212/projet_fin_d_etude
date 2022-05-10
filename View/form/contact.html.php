@@ -4,6 +4,10 @@
         unset($_SESSION['message']);
     }?>
 
+<div id="title-contact">
+    <h1>Formulaire de Contact</h1>
+</div>
+
 <div id="container-contact" class="container">
     <div id="contact-container">
         <form action="/?c=user&a=save-form" method="post">
@@ -21,7 +25,7 @@
                 </textarea>
 
                 <div>
-                    <button class="btn btn-secondary" type="submit" name="submit">Envoyer</button>
+                    <button id="btn-contact" class="btn btn-secondary" type="submit" name="submit">Envoyer</button>
                 </div>
             </div>
         </form>

@@ -26,12 +26,16 @@ $article = $data['article']; ?>
         <span id="comments">Commentaires:</span><?php
         foreach (CommentManager::getCommentByArticle($article) as $item) {
             /* @var Comment $item */ ?>
+             <div>
+                 <p id="author-comment"><?= $item->getAuthor()->getFirstname() ?></p>
+                 <p><?= $item->getContent() ?></p>
+             </div><?php
 
-            <p><?= $item->getAuthor()->getFirstname() ?></p>
-            <p><?= $item->getContent() ?></p><?php
             if (AbstractController::verifyRole()) { ?>
-            <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer le
-                    commentaire</a><?php
+               <div id="remove-comment">
+                   <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer le
+                       commentaire</a>
+               </div><?php
             }
         }
         ?>
