@@ -218,10 +218,22 @@ label {
 
 /* list article */
 
+#show-article {
+    border: 1px dashed #878279;
+    border-radius: 1rem;
+    width: 50%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 #container-article {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#show-article h3 {
+    padding: 2rem;
 }
 
 #article-show {
@@ -242,9 +254,6 @@ label {
 }
 
 /* page article */
-#show-article {
-   text-align: center;
-}
 
 #content {
     margin: 2rem;
