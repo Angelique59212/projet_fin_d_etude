@@ -15,13 +15,15 @@ $articles = $data['article'];
                     <p id="title"><?= $article->getTitle() ?></p>
                     <p id="author"><?= $article->getAuthor()->getFirstname() ?></p>
                     <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir plus</a>
+
             <?php
 
             if (AbstractController::verifyRole()) { ?>
                 <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a>
                 <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier</a>
+                <?php
+            }?>
                 </div><?php
-            }
         }
     }?>
 </div>
