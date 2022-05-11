@@ -19,7 +19,6 @@ $article = $data['article']; ?>
         <?= $article->getTitle() ?>
     </div>
     <div id="content">
-
         <?= html_entity_decode($article->getContent()) ?>
     </div>
 </div>

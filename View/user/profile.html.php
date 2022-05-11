@@ -23,18 +23,18 @@ $user = $data['profile'];
         <div id="container-profile">
             <div class="profile">
                 <label for="firstname">Prénom</label>
-                <input type="text" name="firstname" value="<?= $user->getFirstname() ?>">
+                <input class="identity"  type="text" name="firstname" value="<?= $user->getFirstname() ?>">
             </div>
             <div>
                 <label for="lastname">Nom</label>
-                <input type="text" name="lastname" value="<?= $user->getLastname() ?>">
+                <input class="identity" type="text" name="lastname" value="<?= $user->getLastname() ?>">
             </div>
             <div>
                 <label for="email">Email</label>
-                <input type="text" name="email" value="<?= $user->getEmail() ?>">
+                <input class="identity" type="text" name="email" value="<?= $user->getEmail() ?>">
             </div>
 
-            <input type="submit" name="submit" value="Modifier" class="btn btn-secondary" id="submit">
+            <input type="submit" name="submit" value="Modifier" class="btn btn-secondary" id="submit valid">
 
         </div>
 

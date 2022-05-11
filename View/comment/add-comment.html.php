@@ -10,7 +10,7 @@ $article = $data['article'];
     <form action="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>" method="post" id="addComment">
         <div class="style-comment">
             <label for="content"></label>
-            <textarea name="content" id="content" cols="50" rows="20" required></textarea>
+            <textarea name="content" id="content" required></textarea>
         </div>
 
         <div id="register">

@@ -13,11 +13,11 @@
             <input type="file" name="image" id="image">
         </div>
         <div>
-            <label for="summary">Résumé:</label>
-            <input type="text" name="summary" id="summary" cols="30" row="10">
+            <label class="editor" for="editor">Résumé:</label>
+            <textarea name="summary" id="editor" cols="30" rows="10"></textarea>
         </div>
         <div>
-            <label for="editor"></label>
+            <label class="editor" for="editor">Contenu:</label>
             <textarea name="content" id="editor" cols="30" rows="10"></textarea>
         </div>
 

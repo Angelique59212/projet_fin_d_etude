@@ -263,20 +263,20 @@ label {
 
 /* page article */
 
-#form-addArticle {
-    padding: 8rem;
+#form-addArticle, #form-editArticle {
+    padding: 3rem;
 }
 
-#form-addArticle input {
+#form-addArticle input, #form-editArticle input {
     margin: 0.8rem;
+}
+
+#form-editArticle {
+    margin: 2rem;
 }
 
 #btn-addArticle, #btn-contact {
     font-size: 1.3rem;
-}
-
-#content {
-    margin: 2rem;
 }
 
 #title-article {
@@ -287,15 +287,24 @@ label {
     text-decoration: underline;
 }
 
+.editor {
+    padding: 1rem;
+}
+
 /* comment */
 
-#title-comment, #title-addArticle, #title-contact, #title-profile {
+#title-comment, #title-addArticle, #title-contact, #title-profile, #title-editArticle {
     width: 50vw;
     color: indianred;
     margin: 0 auto;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px,
     rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
+}
+
+#form-addComment textarea {
+    width: 48vw;
+    height: 32vh;
 }
 
 #comments {
@@ -348,6 +357,14 @@ label {
         width: 54vw;
         margin: 5rem;
     }
+
+    #form-editArticle label {
+        width: 32vw;
+    }
+
+    #form-addComment textarea {
+        width: 45vw;
+    }
 }
 
 @media screen and (max-width: 846px) {
@@ -360,6 +377,18 @@ label {
     }
 }
 
+@media screen and (max-width: 750px) {
+    #profile-container .identity {
+        width: 38vw;
+    }
+    #profile-container label {
+        width: 15vw;
+    }
+    #show-article {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 565px) {
     #container-contact {
         padding: 2rem;
@@ -368,6 +397,14 @@ label {
     #contact-container {
         width: 74vw;
     }
+
+    #form-addArticle label {
+        width: 40vw;
+    }
+    #form-editArticle label {
+        width: 40vw;
+    }
+
 }
 
 
@@ -390,6 +427,15 @@ label {
 
     #register-container #password-repeat {
         width: 40vw;
+    }
+
+    #content {
+        width: 90vw;
+    }
+
+    #form-addComment textarea {
+        width: 40vw;
+        height: 30vh;
     }
 }
 

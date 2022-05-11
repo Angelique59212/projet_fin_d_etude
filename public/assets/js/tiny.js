@@ -1,4 +1,5 @@
 tinymce.init({
     selector: '#editor',
-    height: '50vh'
+    width: '70vw',
+    height: '70vh'
 });
