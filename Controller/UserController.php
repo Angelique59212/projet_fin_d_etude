@@ -130,7 +130,7 @@ class UserController extends AbstractController
                     } else {
                         $_SESSION['mail'] = "mail-error";
                     }
-                    header('Location: /index.php?c=user&a=save-form');
+                    $this->render('form/contact');
                 }
             }
         } else {

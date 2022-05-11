@@ -20,8 +20,8 @@
 
                 <label for="message"></label>
                 <textarea
-                        name="message" id="message" cols="30" rows="10" minlength="20" maxlength="250" placeholder="Votre messsage" required>
-
+                    name="message" id="message" cols="30" rows="10" minlength="20" maxlength="250"
+                    placeholder="Votre message (min 20caractères)" required>
                 </textarea>
 
                 <div>

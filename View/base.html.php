@@ -54,7 +54,7 @@
     <div id="bottom">
         <a href="/?c=home">Home</a>
         <a href="/?c=user&a=save-form">Contact</a>
-        <a href="/?c=confidentiality">Confidentialité</a>
+        <a href="/?c=confidentiality&a=confidentiality">Confidentialité</a>
     </div>
 </footer>
 

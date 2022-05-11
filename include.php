@@ -19,6 +19,8 @@ require __DIR__ .'/Controller/ArticleController.php';
 require __DIR__ .'/Controller/HomeController.php';
 require __DIR__ .'/Controller/UserController.php';
 require __DIR__ .'/Controller/CommentController.php';
+require __DIR__ .'/Controller/Confidentiality.php';
 require __DIR__ .'/Controller/ErrorController.php';
+
 
 require __DIR__ . '/Router.php';
