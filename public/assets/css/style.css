@@ -178,10 +178,6 @@ label {
     padding: 2rem;
 }
 
-.card-text {
-    height: 18vh;
-}
-
 #namely {
     font-weight: bold;
     text-decoration: underline;
@@ -202,10 +198,19 @@ label {
 #image-trouble {
     display: flex;
     justify-content: center;
+    padding: 5rem;
 }
 
 #image-trouble img {
     width: 35vw;
+}
+
+.card-img-top {
+    height: 25vh;
+}
+
+#learn {
+    margin-bottom: 5rem;
 }
 
 /* style article */
@@ -216,9 +221,7 @@ label {
 .container-dys {
     width: 32vw;
     display: flex;
-    padding: 3rem;
 }
-
 
 /* list article */
 
@@ -301,6 +304,18 @@ label {
     padding: 2rem;
 }
 
+#comment a {
+    padding: 2rem;
+}
+
+#comment {
+    border: 4px double black;
+    width: 50vw;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 0.8rem;
+}
+
 #comment div {
     padding: 2rem;
 }
@@ -325,6 +340,7 @@ label {
     text-align: center;
     padding: 1rem;
 }
+
 
 
 

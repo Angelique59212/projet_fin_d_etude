@@ -22,24 +22,26 @@ $article = $data['article']; ?>
 
         <?= html_entity_decode($article->getContent()) ?>
     </div>
-    <div id="comment">
-        <span id="comments">Commentaires:</span><?php
-        foreach (CommentManager::getCommentByArticle($article) as $item) {
-            /* @var Comment $item */ ?>
-             <div>
-                 <p id="author-comment"><?= $item->getAuthor()->getFirstname() ?></p>
-                 <p><?= $item->getContent() ?></p>
-             </div><?php
+</div>
+<div id="comment">
+    <span id="comments">Commentaires:</span><?php
+    foreach (CommentManager::getCommentByArticle($article) as $item) {
+        /* @var Comment $item */ ?>
+        <div>
+        <p id="author-comment"><?= $item->getAuthor()->getFirstname() ?></p>
+        <p><?= $item->getContent() ?></p>
+        </div><?php
 
-            if (AbstractController::verifyRole()) { ?>
-               <div id="remove-comment">
-                   <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer le
-                       commentaire</a>
-               </div><?php
-            }
+        if (AbstractController::verifyRole()) { ?>
+            <div id="remove-comment">
+            <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer le
+                commentaire</a>
+            </div><?php
         }
-        ?>
-    </div>
-<a href="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>">Ajouter un commentaire</a><?php
+    }
+    ?>
+    <a href="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>">Ajouter un commentaire</a>
+</div>
+<?php
 
 
