@@ -16,8 +16,8 @@ body {
 }
 
 #logo {
-    width: 25vw;
-    margin: 2rem;
+    width: 33vw;
+    margin: 7rem;
 }
 
 /*Header and Footer */
@@ -85,7 +85,7 @@ a {
 
 #login-container input, #register-container input, #contact-container input, #profile-container input {
     margin: 1rem;
-    width: 10vw;
+    width: 25vw;
     border-radius: 0.3rem;
 }
 
@@ -185,7 +185,7 @@ label {
 }
 
 #def-dys {
-    width: 50vw;
+    width: 75vw;
     margin: 0 auto;
     color: indianred;
     font-size: 1.9rem;
@@ -341,6 +341,80 @@ label {
     padding: 1rem;
 }
 
+/* Responsive */
+
+@media screen and (max-width: 895px) {
+    #logo {
+        width: 54vw;
+        margin: 5rem;
+    }
+}
+
+@media screen and (max-width: 846px) {
+    #register-container label {
+        width: 35vw;
+    }
+
+    #register-container {
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    #container-contact {
+        padding: 2rem;
+    }
+
+    #contact-container {
+        width: 74vw;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    #register-container #email  {
+        width: 40vw;
+    }
+
+    #register-container #firstname {
+        width: 40vw;
+    }
+
+    #register-container #lastname {
+        width: 40vw;
+    }
+
+    #register-container #password {
+        width: 40vw;
+    }
+
+    #register-container #password-repeat {
+        width: 40vw;
+    }
+}
+
+@media  screen and (max-width: 485px) {
+    #login-container #email, #login-container #password, #login-container #submit {
+        width: 30vw;
+    }
+
+    #logo {
+        width: 54vw;
+        margin: 2rem;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    #message {
+        width: 61vw;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    #article-show {
+        width: 56vw;
+    }
+}
 
 
 
