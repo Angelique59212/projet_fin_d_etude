@@ -365,6 +365,18 @@ label {
     #form-addComment textarea {
         width: 45vw;
     }
+
+    .container-dys {
+        width: 47vw;
+    }
+
+    .card {
+        width: 45vw;
+    }
+
+    #image-trouble img {
+        width: 50vw;
+    }
 }
 
 @media screen and (max-width: 846px) {
@@ -389,6 +401,16 @@ label {
     }
 }
 
+@media screen and (max-width: 665px) {
+    .container-dys {
+        width: 60vw;
+    }
+
+    .card {
+        width: 58vw;
+    }
+}
+
 @media screen and (max-width: 565px) {
     #container-contact {
         padding: 2rem;
@@ -405,6 +427,17 @@ label {
         width: 40vw;
     }
 
+    .container-dys {
+        width: 80vw;
+    }
+
+    .card {
+        width: 80vw;
+    }
+
+    #image-trouble img {
+        width: 70vw;
+    }
 }
 
 
@@ -447,6 +480,9 @@ label {
     #logo {
         width: 54vw;
         margin: 2rem;
+    }
+    #image-trouble img {
+        width: 90vw;
     }
 }
 
