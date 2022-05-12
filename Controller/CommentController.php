@@ -35,7 +35,7 @@ class CommentController extends AbstractController
             $content = $this->dataClean($this->getFormField('content'));
 
             CommentManager::addComment($content,$user,$id);
-            header('Location: /index.php?c=article&a=list-article');
+            header('Location: /index.php?c=article&a=show-article&id='.$id);
         }
         $this->render('comment/add-comment',[
             'article'=>ArticleManager::getArticleById($id)

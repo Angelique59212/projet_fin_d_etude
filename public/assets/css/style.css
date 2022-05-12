@@ -350,6 +350,26 @@ label {
     padding: 1rem;
 }
 
+/* Confidentiality */
+
+#confidentiality {
+    border: 1px dashed black;
+    width: 50vw;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1.4rem;
+}
+
+#confidentiality h1 {
+    color: indianred;
+    padding: 2rem;
+    font-size: 3rem;
+}
+
+#confidentiality h2 {
+    font-weight: bold;
+}
+
 /* Responsive */
 
 @media screen and (max-width: 895px) {
@@ -437,6 +457,12 @@ label {
 
     #image-trouble img {
         width: 70vw;
+    }
+}
+
+@media screen and (max-width: 530px){
+    #confidentiality {
+        width: 80vw;
     }
 }
 

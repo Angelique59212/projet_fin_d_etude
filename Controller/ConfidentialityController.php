@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use AbstractController;
 
-class Confidentiality extends AbstractController
+class ConfidentialityController extends AbstractController
 {
     /**
      * @return void
