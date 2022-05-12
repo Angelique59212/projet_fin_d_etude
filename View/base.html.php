@@ -69,6 +69,6 @@
         referrerpolicy="origin">
 </script>
 <script src="/assets/js/tiny.js"></script>
-
+<script src="/assets/js/cookie.js"></script>
 </body>
 </html>

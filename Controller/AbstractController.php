@@ -58,7 +58,7 @@ abstract class AbstractController
     public function redirectIfNotConnected(): void
     {
         if (!self::verifyUserConnect()) {
-            $this->render('home/index');
+            $this->render('home/home');
         }
     }
 
@@ -104,12 +104,20 @@ abstract class AbstractController
     {
         $tmpName = $_FILES['file']['tmp_name'];
         $name = $_FILES['file']['name'];
+        $delimiter = explode('.', $name);
+        $controlExtension = strtolower(end($delimiter));
+        $extensionType= ['jpg','jpeg'];
 
-        if (!isset($_FILES[$field]['name'])) {
+        if (in_array($controlExtension, $extensionType) && !isset($_FILES[$field]['name'])) {
             return (null === $default) ? '' : $default;
         }
+        else {
+            echo 'Mauvaise extension, les extensions jpg, jpeg sont autorisés.';
+        }
+
         move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$_FILES[$field]['name']);
         return basename($_FILES[$field]['name']);
+
     }
 
     /**
