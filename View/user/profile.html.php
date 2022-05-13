@@ -1,15 +1,7 @@
 <?php
 use App\Model\Entity\User;?>
 
-<?php
-    if (isset($_SESSION['message'])) {?>
-        <div class="message">
-            <p><?= $_SESSION['message'] ?></p>
-            <button id="close">x</button>
-        </div>
-        <?php
-        unset($_SESSION['message']);
-    }?>
+
 <?php
 
 /* @var User $user */

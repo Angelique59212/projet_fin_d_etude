@@ -12,7 +12,16 @@
     <script src="lib/jquery.js"></script>
 </head>
 <body>
-
+<?php
+if (isset($_SESSION['error'])) {?>
+    <div class="message">
+        <p><?= $_SESSION['error'] ?></p>
+        <button id="close">x</button>
+    </div>
+    <?php
+    unset($_SESSION['error']);
+}
+?>
 <header>
     <div id="logout">
         <div>
@@ -69,6 +78,5 @@
         referrerpolicy="origin">
 </script>
 <script src="/assets/js/tiny.js"></script>
-<script src="/assets/js/cookie.js"></script>
 </body>
 </html>

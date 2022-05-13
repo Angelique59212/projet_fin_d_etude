@@ -14,45 +14,112 @@ class UserController extends AbstractController
         $this->render('user/register');
     }
 
+    /**
+     * @return void
+     */
     public function register()
     {
         self::redirectIfConnected();
-        if (isset($_POST['submit'])) {
-            if (!$this->formIsset
-            ('email', 'firstname', 'lastname', 'password', 'password-repeat')) {
-                header("Location: /?c=user&f=1");
-            }
 
-            $mail = $this->dataClean(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-            $firstname = $this->dataClean(filter_var($_POST['firstname'], FILTER_SANITIZE_STRING));
-            $lastname = $this->dataClean(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
-            $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
-            $passwordRepeat = $_POST['password-repeat'];
-
-            $user = (new User())
-                ->setEmail($mail)
-                ->setFirstname($firstname)
-                ->setLastname($lastname)
-                ->setPassword($password)
-                ;
-
-            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                header("Location: /?c=user&f=2");
-            }
-
-            if (UserManager::mailExists($mail)) {
-                header("Location: /?c=home&f=3");
-            }
-
-            if (UserManager::addUser($user)) {
-                self::login();
-            }
-
-        }
-        else {
-            $this->render('user/register');
+        if (!isset($_POST['submit'])) {
+            header("Location: /?c=user");
+            die();
         }
 
+        if (!$this->formIsset('email', 'firstname', 'lastname', 'password', 'password-repeat')) {
+            $_SESSION['error'] = "Un champ est manquant";
+            header("Location: /?c=user");
+            die();
+        }
+
+        $mail = $this->dataClean(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+        $firstname = $this->dataClean(filter_var($_POST['firstname'], FILTER_SANITIZE_STRING));
+        $lastname = $this->dataClean(filter_var($_POST['lastname'], FILTER_SANITIZE_STRING));
+        $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+
+        if (!$this->checkPassword($_POST['password'], $_POST['password-repeat'])) {
+            $_SESSION['error'] = "Les password ne correspondent pas";
+            header("Location: /?c=user");
+            die();
+        }
+
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error'] = "l'email n'est pas valide";
+            header("Location: /?c=user");
+            die();
+        }
+
+        if (UserManager::mailExists($mail)) {
+            $_SESSION['error'] = "l'email existe déjà";
+            header("Location: /?c=user");
+            die();
+        }
+
+        $validationKey = self::generateRandomString();
+
+        $user = (new User())
+            ->setEmail($mail)
+            ->setFirstname($firstname)
+            ->setLastname($lastname)
+            ->setPassword($password)
+            ->setValidationKey($validationKey);
+
+        if (!UserManager::addUser($user)) {
+            $_SESSION['error'] = "Enregistrement impossible, re-essayez plus tard";
+            header("Location: /?c=user&a=register");
+            die();
+        }
+
+
+        $userID = UserManager::getUserByMail($mail)->getId();
+
+        $to = $mail;
+        $subject = 'validation email';
+        $headers = array(
+            'From' => 'dehainaut.angelique@orange.fr',
+            'Reply-To' => 'dehainaut.angelique@orange.fr',
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Mime-Version' => '1.0',
+            'Content-Type' => 'text/html; charset=utf-8'
+        );
+        $message = "
+            <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $userID . "\"> Valider mon adresse e-mail</a>
+        ";
+
+        //TODO :: Décommenter a la mise en production
+        //if(!mail($to, $subject, $message, $headers)) {
+        //    $_SESSION['error'] = "Echec de l'envoi du mail.";
+        //    header("Location: /?c=home");
+        //    die();
+        //}
+
+        $_SESSION['error'] = "Un mail de validation vous a été envoyé (Pensez à vérifier vos spams)";
+        header("Location: /?c=user&a=login");
+    }
+
+    public function emailValidation(string $key, string $id)
+    {
+        $id = intval($id);
+
+        if (!$user = UserManager::getUserById($id)) {
+            $_SESSION['error'] = "L'utilisateur n'existe pas.";
+            header("Location: /?c=home");
+            die();
+        }
+
+        $validationKeyFromDB = $user->getValidationKey();
+
+        if ($key !== $validationKeyFromDB) {
+            $_SESSION['error'] = "Clé invalide.";
+            header("Location: /?c=home");
+            die();
+        }
+
+        UserManager::validUser($id);
+
+        $_SESSION['error'] = "Felicitations, vous avez bien validé votre adresse e-mail.";
+        header("Location: /?c=user&a=login");
+        die();
     }
 
 
@@ -60,16 +127,25 @@ class UserController extends AbstractController
      * login
      * @return void
      */
-    public function login () {
+    public function login()
+    {
         if (isset($_POST['submit'])) {
             if (!$this->formIsset('email', 'password')) {
-                header("Location: /?home&f=1");
+                $_SESSION['error'] = "Un champ est manquant";
+                header("Location: /?user&a=login");
+                die();
             }
 
-            $mail = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+            $mail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];
 
-            UserManager::login($mail, $password);
+            if (!UserManager::login($mail, $password)) {
+                header('Location: /?user&a=login');
+                die();
+            }
+
+            header('Location: /?home');
+            die();
         }
 
         $this->render('user/login');
@@ -80,7 +156,7 @@ class UserController extends AbstractController
      * @param int|null $id
      * @return void
      */
-    public function showUser (int $id = null)
+    public function showUser(int $id = null)
     {
         if (null === $id) {
             header('Location: /index.php?c=home');
@@ -92,14 +168,14 @@ class UserController extends AbstractController
         }
 
         $this->render('user/profile', [
-            'profile'=>UserManager::getUserById($id)
+            'profile' => UserManager::getUserById($id)
         ]);
     }
 
     /**
      * @return void
      */
-    public function disconnect():void
+    public function disconnect(): void
     {
         $_SESSION['user'] = null;
         session_unset();
@@ -154,7 +230,7 @@ class UserController extends AbstractController
 
 
             UserManager::editUser($id, $firstname, $lastname, $email);
-            $_SESSION['message'] = 'Votre profil a bien été modifié';
+            $_SESSION['error'] = 'Votre profil a bien été modifié';
             $this->render('user/profile', [
                 'profile' => UserManager::getUserById($id)
             ]);
@@ -174,6 +250,16 @@ class UserController extends AbstractController
         self::disconnect();
         $this->index();
 
+    }
+
+    /**
+     * method used to create a random string
+     * @param int $length
+     * @return false|string
+     */
+    private static function generateRandomString(int $length = 10)
+    {
+        return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
     }
 
 }

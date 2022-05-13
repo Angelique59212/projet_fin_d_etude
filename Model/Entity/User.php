@@ -10,6 +10,43 @@ class User extends AbstractEntity
     private string $firstname;
     private string $lastname;
     private string $password;
+    private string $validationKey;
+    private bool $valid;
+
+    /**
+     * @return string
+     */
+    public function getValidationKey(): string
+    {
+        return $this->validationKey;
+    }
+
+    /**
+     * @param string $validationKey
+     * @return User
+     */
+    public function setValidationKey(string $validationKey): self
+    {
+        $this->validationKey = $validationKey;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->valid;
+    }
+
+    /**
+     * @param bool $valid
+     */
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
+        return $this;
+    }
     private array $role;
 
     public function __construct()

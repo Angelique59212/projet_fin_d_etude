@@ -35,6 +35,7 @@ abstract class AbstractController
     }
 
     /**
+     * check if the form is submitted
      * @return bool
      */
     public function verifyFormSubmit(): bool
@@ -63,6 +64,7 @@ abstract class AbstractController
     }
 
     /**
+     * check role
      * @return bool
      */
     public static function verifyRole(): bool
@@ -82,6 +84,7 @@ abstract class AbstractController
     }
 
     /**
+     *Return a form field value or default
      * @param string $field
      * @param $default
      * @return mixed|string
@@ -96,28 +99,47 @@ abstract class AbstractController
     }
 
     /**
+     * image management for articles
      * @param string $field
      * @param $default
      * @return mixed|string
      */
-    public function getFormFieldImage(string $field, $default = null)
+    public function getFormFieldImage(string $field)
     {
-        $tmpName = $_FILES['file']['tmp_name'];
-        $name = $_FILES['file']['name'];
-        $delimiter = explode('.', $name);
-        $controlExtension = strtolower(end($delimiter));
-        $extensionType= ['jpg','jpeg'];
-
-        if (in_array($controlExtension, $extensionType) && !isset($_FILES[$field]['name'])) {
-            return (null === $default) ? '' : $default;
-        }
-        else {
-            echo 'Mauvaise extension, les extensions jpg, jpeg sont autorisés.';
+        if ($_FILES[$field]['error']) {
+            $_SESSION['error'] = "Erreur lors de l'upload de l'image";
+            return false;
         }
 
-        move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$_FILES[$field]['name']);
-        return basename($_FILES[$field]['name']);
+        $splitFileName =  explode('.', $_FILES[$field]['name']);
+        $name = $splitFileName[0];
+        $fileExtension = strtolower(end( $splitFileName));
+        $authorizedType= ['jpg','jpeg', 'png'];
 
+        if (!in_array($fileExtension, $authorizedType)) {
+            $_SESSION['error'] = "Type de fichier non autorisé (uniquement images jpg, jpeg et png)";
+            return false;
+        }
+
+        $unwanted_array = [
+            'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c', 'è' => 'e', 'é' => 'e',
+            'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o',
+            'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y',
+            ' ' => "-", ':' => "-", '&' => '-et-', '+' => 'et',
+        ];
+
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+
+        $newImageName = strtr($name, $unwanted_array);
+
+        $newImageName = $newImageName . date('Y-m-d-H-i-s') . "." . $fileExtension;
+
+        if (!move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$newImageName)) {
+            $_SESSION['error'] = "echec de l'enregistrement de l'image";
+            return false;
+        }
+
+        return $newImageName;
     }
 
     /**
@@ -135,7 +157,7 @@ abstract class AbstractController
      */
     public function checkPassword(string $password, string $password_repeat): bool
     {
-        if ($password !== $password_repeat) {
+        if ($password === $password_repeat) {
             return true;
         } else {
             return false;
@@ -143,6 +165,7 @@ abstract class AbstractController
     }
 
     /**
+     * sanitize data
      * @param $data
      * @return string
      */

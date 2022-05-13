@@ -38,10 +38,8 @@ class Router
                 $controller->$method();
             }
             else {
-                $parameters = [];
                 foreach ($params as $param) {
-                    $get = $_GET[$param['paramName']];
-                    $parameters[] = $get;
+                    $parameters[] = $_GET[$param['paramName']];
                 }
                 $controller->$method(...$parameters);
             }

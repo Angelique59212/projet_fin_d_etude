@@ -29,6 +29,9 @@ class ArticleController extends AbstractController
        $this->render('article/' . $action);
     }
 
+    /**
+     * @return void
+     */
     public function addArticle()
     {
         self::redirectIfNotConnected();
@@ -44,7 +47,11 @@ class ArticleController extends AbstractController
 
             $title = $this->dataClean($this->getFormField('title'));
             $summary = $this->dataClean($this->getFormField('summary'));
-            $image = $this->dataClean($this->getFormFieldImage('image'));
+            $image = $this->getFormFieldImage('image');
+            if (!$image) {
+                header('location: /index.php?c=article&a=add-article');
+                die();
+            }
             $content = $this->getFormField('content');
 
             $article = new Article();
@@ -57,6 +64,7 @@ class ArticleController extends AbstractController
             ;
 
             if (ArticleManager::addNewArticle($article, $title,$summary,$image, $content, $_SESSION['user']->getId())) {
+                $_SESSION['error'] = "votre article as bien etait ajouté";
                 header('Location: /index.php?c=home&a=home');
             }
         }else {
