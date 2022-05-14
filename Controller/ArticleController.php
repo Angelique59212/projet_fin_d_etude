@@ -64,7 +64,7 @@ class ArticleController extends AbstractController
             ;
 
             if (ArticleManager::addNewArticle($article, $title,$summary,$image, $content, $_SESSION['user']->getId())) {
-                $_SESSION['error'] = "votre article as bien etait ajouté";
+                $_SESSION['error'] = "votre article a bien été ajouté";
                 header('Location: /index.php?c=home&a=home');
             }
         }else {

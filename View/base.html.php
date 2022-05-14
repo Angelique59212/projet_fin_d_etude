@@ -64,6 +64,7 @@ if (isset($_SESSION['error'])) {?>
         <a href="/?c=home">Home</a>
         <a href="/?c=user&a=save-form">Contact</a>
         <a href="/?c=confidentiality&a=confidentiality">Confidentialité</a>
+        <p>&copy; Angélique Dehainaut</p>
     </div>
 </footer>
 
