@@ -25,7 +25,10 @@ class CommentController extends AbstractController
      */
     public function addComment(int $id)
     {
-        self::redirectIfNotConnected();
+        if(self::verifyUserConnect() === false) {
+            $_SESSION['error'] = "Vous devez être connecté";
+            self::redirectIfNotConnected();
+        }
 
         if($this->verifyFormSubmit()) {
             $userSession = $_SESSION['user'];

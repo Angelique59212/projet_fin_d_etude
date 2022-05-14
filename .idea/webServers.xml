@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="168a23e8-a5df-4240-862e-891223dfe32a" name="troubles-dys.angeliquedehai.fr" url="http://ftp.sc1qpsc2240.universe.wf">
+        <fileTransfer rootFolder="/troubles-dys.angeliquedehai.fr" host="ftp.sc1qpsc2240.universe.wf" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

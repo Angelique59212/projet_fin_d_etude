@@ -26,6 +26,10 @@ class UserManager
         return $users;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public static function validUser(int $id) : bool
     {
         $stmt = Connect::dbConnect()->prepare("

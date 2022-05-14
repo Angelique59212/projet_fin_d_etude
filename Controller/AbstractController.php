@@ -59,7 +59,7 @@ abstract class AbstractController
     public function redirectIfNotConnected(): void
     {
         if (!self::verifyUserConnect()) {
-            $this->render('home/home');
+            $this->render('user/login');
         }
     }
 
@@ -101,8 +101,7 @@ abstract class AbstractController
     /**
      * image management for articles
      * @param string $field
-     * @param $default
-     * @return mixed|string
+     * @return false|string
      */
     public function getFormFieldImage(string $field)
     {

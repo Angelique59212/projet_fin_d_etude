@@ -21,6 +21,9 @@ class UserController extends AbstractController
     {
         self::redirectIfConnected();
 
+        /**
+         * verification of information
+         */
         if (!isset($_POST['submit'])) {
             header("Location: /?c=user");
             die();
@@ -55,8 +58,14 @@ class UserController extends AbstractController
             die();
         }
 
+        /**
+         * generate a random key for sending the validation email
+         */
         $validationKey = self::generateRandomString();
 
+        /**
+         * registration of the user and the validation key in the database
+         */
         $user = (new User())
             ->setEmail($mail)
             ->setFirstname($firstname)
@@ -70,9 +79,14 @@ class UserController extends AbstractController
             die();
         }
 
-
+        /**
+         * retrieval of user id and validation key
+         */
         $userID = UserManager::getUserByMail($mail)->getId();
 
+        /**
+         * send mail
+         */
         $to = $mail;
         $subject = 'validation email';
         $headers = array(
@@ -86,6 +100,7 @@ class UserController extends AbstractController
             <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $userID . "\"> Valider mon adresse e-mail</a>
         ";
 
+
         //TODO :: Décommenter a la mise en production
         //if(!mail($to, $subject, $message, $headers)) {
         //    $_SESSION['error'] = "Echec de l'envoi du mail.";
@@ -97,6 +112,11 @@ class UserController extends AbstractController
         header("Location: /?c=user&a=login");
     }
 
+    /**
+     * @param string $key
+     * @param string $id
+     * @return void
+     */
     public function emailValidation(string $key, string $id)
     {
         $id = intval($id);
