@@ -97,7 +97,8 @@ class UserController extends AbstractController
             'Content-Type' => 'text/html; charset=utf-8'
         );
         $message = "
-            <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $userID . "\"> Valider mon adresse e-mail</a>
+            <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $userID . "\"> 
+            Valider mon adresse e-mail, afin de valider mon inscription sur les troubles-dys</a>
         ";
 
         if(!mail($to, $subject, $message, $headers)) {
