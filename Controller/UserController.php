@@ -100,13 +100,11 @@ class UserController extends AbstractController
             <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $userID . "\"> Valider mon adresse e-mail</a>
         ";
 
-
-        //TODO :: Décommenter a la mise en production
-        //if(!mail($to, $subject, $message, $headers)) {
-        //    $_SESSION['error'] = "Echec de l'envoi du mail.";
-        //    header("Location: /?c=home");
-        //    die();
-        //}
+        if(!mail($to, $subject, $message, $headers)) {
+            $_SESSION['error'] = "Echec de l'envoi du mail.";
+            header("Location: /?c=home");
+            die();
+        }
 
         $_SESSION['error'] = "Un mail de validation vous a été envoyé (Pensez à vérifier vos spams)";
         header("Location: /?c=user&a=login");
