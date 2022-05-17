@@ -1,3 +1,4 @@
+<div class="contain"></div>
 <div id="login-container">
     <form action="/?c=user&a=login" method="post">
         <div>

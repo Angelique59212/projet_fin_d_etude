@@ -1,4 +1,4 @@
-
+<div class="contain"></div>
 <div id="register-container">
         <form action="/index.php?c=user&a=register" method="post">
             <div>
