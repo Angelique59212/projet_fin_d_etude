@@ -99,7 +99,7 @@ abstract class AbstractController
     }
 
     /**
-     * image management for articles
+     * image management
      * @param string $field
      * @return false|string
      */
@@ -110,35 +110,21 @@ abstract class AbstractController
             return false;
         }
 
-        $splitFileName =  explode('.', $_FILES[$field]['name']);
-        $name = $splitFileName[0];
-        $fileExtension = strtolower(end( $splitFileName));
-        $authorizedType= ['jpg','jpeg', 'png'];
-
-        if (!in_array($fileExtension, $authorizedType)) {
+        $authorizedMimeTypes = ['image/jpeg', 'image/jpg', 'image.png'];
+        if (!in_array($_FILES[$field]['type'], $authorizedMimeTypes)) {
             $_SESSION['error'] = "Type de fichier non autorisé (uniquement images jpg, jpeg et png)";
             return false;
         }
 
-        $unwanted_array = [
-            'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c', 'è' => 'e', 'é' => 'e',
-            'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o',
-            'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y',
-            ' ' => "-", ':' => "-", '&' => '-et-', '+' => 'et',
-        ];
-
-        $name = filter_var($name, FILTER_SANITIZE_STRING);
-
-        $newImageName = strtr($name, $unwanted_array);
-
-        $newImageName = $newImageName . date('Y-m-d-H-i-s') . "." . $fileExtension;
-
-        if (!move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' .$newImageName)) {
+        $oldName = $_FILES[$field]['name'];
+        $newName = (new DateTime())->format('ymdhis') . '-' . uniqid();
+        $newName .= substr($oldName, strripos($oldName, '.'));
+        if (!move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' . $newName)) {
             $_SESSION['error'] = "echec de l'enregistrement de l'image";
             return false;
         }
 
-        return $newImageName;
+        return $newName;
     }
 
     /**
