@@ -32,7 +32,7 @@ tarteaucitron.init({
     "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
     "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
 
-    //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+    // "cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
 
     "readmoreLink": "", /* Change the default readmore link */
 
