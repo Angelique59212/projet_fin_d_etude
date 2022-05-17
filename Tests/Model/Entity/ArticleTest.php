@@ -16,5 +16,6 @@ class ArticleTest extends TestCase
         $article = new Article();
         $article->setImage('fake.png');
         $this->assertEquals('fake.png', $article->getImage());
+        $this->assertIsString($article->getImage());
     }
 }
