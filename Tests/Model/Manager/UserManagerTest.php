@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 class UserManagerTest extends TestCase
 {
     /**
+     * I test the function getUserByMail and I check if by putting a known address it sends it back to me
      * @return void
      */
     public function testCheckUserInBdd()
