@@ -376,12 +376,9 @@ class UserController extends AbstractController
 
             if(!mail($mail, $subject, $message, $this->mailHeaders)) {
                 $_SESSION['error'] = "Echec de l'envoi du mail.";
-                //header("Location: /?c=home");
-                //die();
+                header("Location: /?c=home");
+                die();
             }
-
-            echo "http://localhost:8000/?c=user&a=reset-password-check-token&token=$token";
-            die();
         }
         $this->render('user/reset-password-request');
     }
