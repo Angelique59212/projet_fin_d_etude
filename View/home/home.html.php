@@ -15,7 +15,8 @@ if (isset($data['articles']))
 {
     $articles = $data['articles'];
     ?>
-<div class="container-home"><?php
+<div class="container-home">
+    <h2>Découvrez les 3 derniers articles</h2><?php
     foreach ($articles as $article) {
         /* @var Article $article */?>
         <div class="container-dys">
