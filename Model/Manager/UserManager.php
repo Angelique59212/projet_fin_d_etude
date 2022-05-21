@@ -41,56 +41,6 @@ class UserManager
     }
 
     /**
-     * Login
-     * @param string $mail
-     * @param string $password
-     * @return false
-     */
-    public static function login(string $mail, string $password): bool
-    {
-        $stmt = Connect::dbConnect()->prepare("
-            SELECT * FROM " . self::TABLE . " WHERE email = :email
-        ");
-
-        $stmt->bindParam(':email', $mail);
-
-        if ($stmt->execute()) {
-            $user = $stmt->fetch();
-
-            if (password_verify($password, $user['password'])) {
-                $userSession = (new User())
-                    ->setId($user['id'])
-                    ->setEmail($user['email'])
-                    ->setFirstname($user['firstname'])
-                    ->setLastname($user['lastname'])
-                    ->setValid($user['valid']);
-
-                $userSession->setRole(RoleManager::getRoleByUser($userSession));
-
-                if (!$userSession->isValid()) {
-                    $_SESSION['error'] = "Votre mail n'a pas été validé";
-                    return false;
-                }
-
-                if (!isset($_SESSION['user'])) {
-                    $_SESSION['user'] = $userSession;
-                }
-
-                $_SESSION['id'] = $userSession->getId();
-                return true;
-            }
-            else {
-                $_SESSION['error'] = 'Mot de passe incorrect';
-                return false;
-            }
-        }
-        else {
-            $_SESSION['error'] = 'Email incorrect';
-            return false;
-        }
-    }
-
-    /**
      * @param int $id
      * @return User|null
      */

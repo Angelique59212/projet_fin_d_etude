@@ -154,6 +154,7 @@ class UserController extends AbstractController
     public function login()
     {
         if (isset($_POST['submit'])) {
+
             if (!$this->formIsset('email', 'password')) {
                 $_SESSION['error'] = "Un champ est manquant";
                 header("Location: /?c=user&a=login");
@@ -162,18 +163,35 @@ class UserController extends AbstractController
 
             $mail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];
+            $user = UserManager::getUserByMail($mail);
 
-            if (!UserManager::login($mail, $password)) {
-                header('Location: /?c=user&a=login');
-                exit;
+            if (password_verify($password, $user['password'])) {
+                $userSession = (new User())
+                    ->setId($user['id'])
+                    ->setEmail($user['email'])
+                    ->setFirstname($user['firstname'])
+                    ->setLastname($user['lastname'])
+                    ->setValid($user['valid']);
+
+                $userSession->setRole(RoleManager::getRoleByUser($userSession));
+
+                // Account not validated.
+                if (!$userSession->isValid()) {
+                    $_SESSION['error'] = "Votre mail n'a pas été validé";
+                }
+                // Account validated, storing user in session.
+                else {
+                    $_SESSION['user'] = $userSession;
+                }
             }
-
+            else {
+                $_SESSION['error'] = 'Mot de passe incorrect';
+            }
             header('Location: /?c=home');
             die();
         }
 
         $this->render('user/login');
-
     }
 
 

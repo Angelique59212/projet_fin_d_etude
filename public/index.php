@@ -1,4 +1,6 @@
 <?php
+// Mot de passe oublié
+// Pattern email
 
 use App\Router;
 require __DIR__ . '/../include.php';
