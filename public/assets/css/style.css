@@ -524,6 +524,10 @@ small {
     #register-container {
         width: 100vw;
     }
+
+    #reset-password-container {
+        width: 80vw;
+    }
 }
 
 @media screen and (max-width: 750px) {
