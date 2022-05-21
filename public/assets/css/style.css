@@ -511,17 +511,6 @@ small {
     }
 }
 
-@media screen and (max-width: 745px) {
-    .article-summary {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .article-summary p {
-        padding: 2rem;
-    }
-}
-
 @media screen and (max-width: 750px) {
     #profile-container .identity {
         width: 38vw;
@@ -531,6 +520,17 @@ small {
     }
     #show-article {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 745px) {
+    .article-summary {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .article-summary p {
+        padding: 2rem;
     }
 }
 
