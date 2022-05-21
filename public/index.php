@@ -1,5 +1,4 @@
 <?php
-// Mot de passe oublié
 // Pattern email
 
 use App\Router;
@@ -14,4 +13,3 @@ try {
 catch (ReflectionException $e) {
     echo "La connexion a échoué";
 }
-

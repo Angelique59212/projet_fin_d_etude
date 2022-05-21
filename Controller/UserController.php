@@ -10,6 +10,19 @@ use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
 {
+    private const TOKEN_MAX_VALIDITY = '+1 hours';
+    private array $mailHeaders;
+
+    public function __construct()
+    {
+        $this->mailHeaders = [
+            'From' => 'dehainaut.angelique@orange.fr',
+            'Reply-To' => 'dehainaut.angelique@orange.fr',
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Mime-Version' => '1.0',
+            'Content-Type' => 'text/html; charset=utf-8'
+        ];
+    }
 
     /**
      * Default method if no action provided in the URL.
@@ -91,20 +104,13 @@ class UserController extends AbstractController
         /**
          * send user validation mail.
          */
-        $subject = 'validation email';
-        $headers = array(
-            'From' => 'dehainaut.angelique@orange.fr',
-            'Reply-To' => 'dehainaut.angelique@orange.fr',
-            'X-Mailer' => 'PHP/' . phpversion(),
-            'Mime-Version' => '1.0',
-            'Content-Type' => 'text/html; charset=utf-8'
-        );
+        $subject = 'Validation email';
         $message = "
             <a href=\"http://troubles-dys.angeliquedehai.fr/?c=user&a=email-validation&key=" . $validationKey . "&id=" . $user->getId() . "\"> 
             Valider mon adresse e-mail, afin de valider mon inscription sur les troubles-dys</a>
         ";
 
-        if(!mail($mail, $subject, $message, $headers)) {
+        if(!mail($mail, $subject, $message, $this->mailHeaders)) {
             $_SESSION['error'] = "Echec de l'envoi du mail.";
             header("Location: /?c=home");
             die();
@@ -165,27 +171,21 @@ class UserController extends AbstractController
             $password = $_POST['password'];
             $user = UserManager::getUserByMail($mail);
 
-            if (password_verify($password, $user['password'])) {
-                $userSession = (new User())
-                    ->setId($user['id'])
-                    ->setEmail($user['email'])
-                    ->setFirstname($user['firstname'])
-                    ->setLastname($user['lastname'])
-                    ->setValid($user['valid']);
-
-                $userSession->setRole(RoleManager::getRoleByUser($userSession));
+            // If user where found from database and password is ok.
+            if ($user && password_verify($password, $user->getPassword())) {
+                $user->setRole(RoleManager::getRoleByUser($user));
 
                 // Account not validated.
-                if (!$userSession->isValid()) {
+                if (!$user->isValid()) {
                     $_SESSION['error'] = "Votre mail n'a pas été validé";
                 }
                 // Account validated, storing user in session.
                 else {
-                    $_SESSION['user'] = $userSession;
+                    $_SESSION['user'] = $user;
                 }
             }
             else {
-                $_SESSION['error'] = 'Mot de passe incorrect';
+                $_SESSION['error'] = 'Mot de passe ou adresse mail incorrect';
             }
             header('Location: /?c=home');
             die();
@@ -234,7 +234,8 @@ class UserController extends AbstractController
         if($success) {
             $_SESSION['success'] = $success;
         }
-        $this->render('home/home');
+
+        header("Location: /index.php");
     }
 
 
@@ -251,13 +252,9 @@ class UserController extends AbstractController
 
             $to = 'dehainaut.angelique@orange.fr';
             $subject = "Vous avez un message";
-            $headers = array(
-                'Reply-to' => $userMail,
-                'X-Mailer' => 'PHP/' . phpversion()
-            );
             if (filter_var($userMail, FILTER_VALIDATE_EMAIL)) {
                 if (strlen($message) >= 20 && strlen($message) <= 250) {
-                    if (mail($to, $subject, $message, $headers, $userMail)) {
+                    if (mail($to, $subject, $message, $this->mailHeaders, $userMail)) {
                         $_SESSION['mail'] = "mail-success";
                     } else {
                         $_SESSION['mail'] = "mail-error";
@@ -338,6 +335,119 @@ class UserController extends AbstractController
             }
         }
         $this->index();
+    }
+
+    /**
+     * Send a reset password request. - Step 1 => Sending email with token.
+     * @return void
+     * @throws \Exception
+     */
+    public function resetPasswordRequest()
+    {
+        if(isset($_POST['reset-password-send-email']))
+        {
+            $mail = $this->dataClean($this->getFormField('email'));
+            $token = $this->generateRandomString(30);
+
+            // Saving reset password request into the database.
+            $result = UserManager::addUserResetPasswordEntry($mail, $token);
+            if(!$result) {
+                $_SESSION['error'] = "Nous sommes désolé, une erreur interne est survenue, veuillez réessayez plus tard !";
+                $this->render('user/reset-password-request');
+            }
+
+            // Getting the right user.
+            $user = UserManager::getUserByMail($mail);
+            if(!$user) {
+                $_SESSION['error'] = "Nous n'avons pas trouvé votre compte, veuillez vérifier votre adresse mail";
+                $this->render('user/reset-password-request');
+            }
+
+            $subject = 'Réinitialisation du mot de passe';
+            $message = '
+                Vous avez demandé à réinitialiser votre mot de passe, cliquez sur le lien suivant et suivez les instructions.
+                Le lien est valable 1 heure, passé ce délai vous devrez faire une nouvelle demande.
+                <a href="http://troubles-dys.angeliquedehai.fr/?c=user&a=reset-password-check-token&token='.$token.'"> 
+                    Réinitialiser le mot de passe
+                </a>
+                Si le lien ne fonctionne pas, copiez collez le texte suivant dans la barre d\'adresse de votre navigateur.
+                http://troubles-dys.angeliquedehai.fr/?c=user&a=reset-password-check-token&token='.$token.'
+            ';
+
+            if(!mail($mail, $subject, $message, $this->mailHeaders)) {
+                $_SESSION['error'] = "Echec de l'envoi du mail.";
+                //header("Location: /?c=home");
+                //die();
+            }
+
+            echo "http://localhost:8000/?c=user&a=reset-password-check-token&token=$token";
+            die();
+        }
+        $this->render('user/reset-password-request');
+    }
+
+
+    /**
+     * Checking token validity and display reset password form.
+     * @return void
+     */
+    public function resetPasswordCheckToken()
+    {
+        $token = $this->dataClean($_GET['token']);
+        $tokenData = UserManager::getResetPasswordTokenData($token);
+        $userMail = $tokenData['email'];
+
+        if($tokenData) {
+            $validUntil = \DateTime::createFromFormat('Y-m-d H:i:s', $tokenData['date_add'])->modify(self::TOKEN_MAX_VALIDITY);
+            // checking token is still valid.
+            if($validUntil > new \DateTime() ) {
+                // token is valid, display the new password form.
+                $_SESSION['tmp_user'] = UserManager::getUserByMail($userMail);
+                $_SESSION['token'] = $token;
+                $this->resetPasswordSetNewPassword();
+            }
+            else {
+                // Token is not valid, redirect to the login page.
+                $_SESSION['error'] = "Votre jeton d'authentification a expiré, veuillez faire une nouvelle demande";
+                $this->login();
+            }
+        }
+        else {
+            $_SESSION['error'] = "Votre jeton d'authentification n'a pas été trouvé";
+        }
+    }
+
+
+    /**
+     * Display the reset password form. Step 2 => User choose a new password.
+     * @return void
+     */
+    public function resetPasswordSetNewPassword()
+    {
+        if(!isset($_SESSION['tmp_user'])) {
+            $_SESSION['error'] = "Impossible de trouver votre session";
+            $this->render('user/reset-password-request');
+        }
+
+        if (isset($_POST['submit-new-password'])) {
+            $user = $_SESSION['tmp_user'];
+            $password = $this->getFormField('password');
+            $passwordRepeat = $this->getFormField('password-repeat');
+
+            if (!$this->checkPassword($password, $passwordRepeat)) {
+                $_SESSION['error'] = "Les password ne correspondent pas, ou il ne respecte pas les critères de sécurité (minuscule, majuscule, nombre, caractère spécial)";
+                $this->render('user/reset-password-request');
+            }
+
+            $password = password_hash($password, PASSWORD_ARGON2I);
+            $user->setPassword($password);
+            UserManager::editUser($user->getId(), $user->getFirstname(), $user->getLastname(), $user->getEmail(), $password);
+            UserManager::deleteUserResetPasswordEntry($user->getEmail(), $_SESSION['token']);
+            $_SESSION['success'] = "Votre mot de passe a bien été changé, vous pouvez maintenant vous connecter";
+            $this->login();
+        }
+
+        $this->render('user/reset-password-set-new-password');
     }
 
 

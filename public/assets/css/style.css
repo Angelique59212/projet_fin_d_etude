@@ -95,8 +95,12 @@ a {
 }
 
 /* login / Register and Profile */
-#login-container, #register-container {
+#login-container, #register-container, #reset-password-container {
     text-align: center;
+}
+
+#reset-password-container div > div {
+    margin-bottom: 1.5rem;
 }
 
 #register-container, #contact-container {
@@ -106,6 +110,7 @@ a {
     border-radius: 3rem;
     padding: 3rem;
 }
+
 
 #contact-container textarea {
     display: block;

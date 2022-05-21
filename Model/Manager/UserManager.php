@@ -5,10 +5,12 @@ namespace App\Model\Manager;
 use App\Model\Entity\User;
 use App\Model\Manager\RoleManager;
 use Connect;
+use Exception;
 
 class UserManager
 {
     public const TABLE = 'mdf58_user';
+    public const RESET_PASSWORD_TABLE = 'mdf58_reset_password';
 
     /**
      * @return array
@@ -159,6 +161,64 @@ class UserManager
     {
         $stmt = Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email LIMIT 1");
         $stmt->bindParam(':email', $mail);
-        return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
+        $result = $stmt->execute();
+        if($result && $data = $stmt->fetch()) {
+            return self::makeUser($data);
+        }
+        return null;
+    }
+
+
+    /**
+     * Add a new reset password request.
+     * @param string $mail
+     * @param string $token
+     * @return void
+     * @throws Exception
+     */
+    public static function addUserResetPasswordEntry(string $mail, string $token): bool
+    {
+        $date = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+
+        $stmt = Connect::dbConnect()->prepare("
+            INSERT INTO ".self::RESET_PASSWORD_TABLE." (email, token, date_add) 
+                VALUES (:email, :token, :date_add)
+        ");
+
+        $stmt->bindParam(':email', $mail);
+        $stmt->bindParam(':token', $token);
+        $stmt->bindValue(':date_add', $date->format('Y-m-d H:i:s'));
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Delete expired password reset request token.
+     * @param string $mail
+     * @param string $token
+     * @return void
+     */
+    public static function deleteUserResetPasswordEntry(string $mail, string $token)
+    {
+
+    }
+
+    /**
+     * Return available data for the given token.
+     * @param string $token
+     * @return null|array
+     */
+    public static function getResetPasswordTokenData(string $token): ?array
+    {
+        $stmt = Connect::dbConnect()->prepare("
+            SELECT * FROM ".self::RESET_PASSWORD_TABLE." WHERE token=:token
+        ");
+
+        $stmt->bindParam(':token', $token);
+        $result = $stmt->execute();
+        if($result && $data = $stmt->fetch()) {
+            return $data;
+        }
+        return null;
     }
 }

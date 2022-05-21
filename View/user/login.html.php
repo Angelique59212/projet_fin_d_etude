@@ -12,5 +12,8 @@
         </div>
 
         <input value="Se connecter" class="btn btn-secondary" type="submit" name="submit" id="submit">
+        <small>
+            <a href="/?c=user&a=reset-password-request" title="Mot de passe oublié">Mot de passe oublié</a>
+        </small>
     </form>
 </div>
