@@ -464,10 +464,20 @@ small {
 
 /* Responsive */
 
+@media screen and (max-width: 1415px) {
+    #show-article {
+        width: 80vw;
+    }
+}
+
 @media screen and (max-width: 895px) {
     #logo {
         width: 54vw;
         margin: 5rem;
+    }
+
+    #show-article {
+        width: 95vw;
     }
 
     #form-editArticle label {
@@ -498,6 +508,17 @@ small {
 
     #register-container {
         width: 100vw;
+    }
+}
+
+@media screen and (max-width: 745px) {
+    .article-summary {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .article-summary p {
+        padding: 2rem;
     }
 }
 
