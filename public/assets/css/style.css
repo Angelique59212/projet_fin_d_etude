@@ -103,6 +103,13 @@ a {
     margin-bottom: 1.5rem;
 }
 
+#reset-password-container {
+    width: 50vw;
+    margin: 0 auto;
+    border: 7px double black;
+    padding: 1rem;
+}
+
 #register-container, #contact-container {
     border: 1px solid #404040;
     width: 50vw;
