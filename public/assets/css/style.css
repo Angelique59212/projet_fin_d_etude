@@ -499,6 +499,14 @@ small {
     #image-trouble img {
         width: 50vw;
     }
+
+    #contact-container input {
+        width: 100%;
+    }
+
+    #contact-container {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 846px) {
@@ -521,6 +529,12 @@ small {
     #show-article {
         width: 100%;
     }
+
+    #container-profile div > label {
+        width: 40vw;
+        text-align: center;
+        padding: 0.2rem;
+    }
 }
 
 @media screen and (max-width: 745px) {
@@ -541,6 +555,10 @@ small {
 
     .card {
         width: 58vw;
+    }
+
+    #profile-container .identity {
+        width: 66vw;
     }
 }
 
