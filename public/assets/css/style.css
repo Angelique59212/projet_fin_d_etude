@@ -504,7 +504,7 @@ small {
         width: 100%;
     }
 
-    #contact-container label {
+    #contact-container textarea {
         width: 100%;
     }
 }
