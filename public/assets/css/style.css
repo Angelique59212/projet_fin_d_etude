@@ -221,6 +221,11 @@ label {
     padding: 2rem;
 }
 
+#title-home {
+    text-align: center;
+    padding: 1rem;
+}
+
 .card {
     width: 31vw;
     margin: 1rem;
