@@ -19,6 +19,7 @@ class ArticleController extends AbstractController
         $this->render('home/home');
     }
 
+
     /**
      * redirect when clicked on read more
      * @param $action
@@ -29,30 +30,33 @@ class ArticleController extends AbstractController
        $this->render('article/' . $action);
     }
 
+
     /**
      * @return void
      */
     public function addArticle()
     {
         self::redirectIfNotConnected();
-        self::verifyRole();
         if (!self::verifyRole()) {
             header('Location: /index.php?c=home');
         }
 
         if ($this->verifyFormSubmit()) {
-            $userSession = $_SESSION['user'];
-            /* @var User $userSession */
-            $user = UserManager::getUserById($userSession->getId());
-
-            $title = $this->dataClean($this->getFormField('title'));
-            $summary = $this->dataClean($this->getFormField('summary'));
             $image = $this->getFormFieldImage('image');
+
+            // Redirect if no image provided.
             if (!$image) {
+                $_SESSION['error'] = "Vous n'avez pas fourni d'image";
                 header('location: /index.php?c=article&a=add-article');
                 die();
             }
-            $content = $this->getFormField('content');
+
+            $user = $_SESSION['user'];
+
+            // Getting and securing form content.
+            $title = $this->dataClean($this->getFormField('title'));
+            $summary = $this->dataCleanHtmlContent($this->getFormField('summary'));
+            $content = $this->dataCleanHtmlContent($this->getFormField('content'));
 
             $article = new Article();
             $article
@@ -63,11 +67,11 @@ class ArticleController extends AbstractController
                 ->setAuthor($user)
             ;
 
-            if (ArticleManager::addNewArticle($article, $title,$summary,$image, $content, $_SESSION['user']->getId())) {
-                $_SESSION['error'] = "votre article a bien été ajouté";
+            if (ArticleManager::addNewArticle($article)) {
+                $_SESSION['success'] = "Votre article a bien été ajouté";
                 header('Location: /index.php?c=home&a=home');
             }
-        }else {
+        } else {
             $this->render('article/add-article');
         }
     }
@@ -104,9 +108,13 @@ class ArticleController extends AbstractController
      * @return void
      */
     public function deleteArticle(int $id) {
+        $this->redirectIfConnected();
+        if(!self::verifyRole()) {
+            header('Location: /index.php?c=home');
+        }
         if (ArticleManager::articleExists($id)) {
             $article = ArticleManager::getArticleById($id);
-            $deleted = ArticleManager::deleteArticle($article);
+            ArticleManager::deleteArticle($article);
             header('Location: /index.php?c=article&a=list-article');
         }
         $this->index();
@@ -118,18 +126,26 @@ class ArticleController extends AbstractController
      */
     public function editArticle(int $id)
     {
-        if (isset($_POST['save'])) {
-            if (ArticleManager::articleExists($id)) {
-                $title = $this->dataClean($this->getFormField('title'));
-                $summary = $this->dataClean($this->getFormField('summary'));
-                $content = $this->dataClean($this->getFormField('content'));
+        $this->redirectIfNotConnected();
+        if(!self::verifyRole()) {
+            header('Location: /index.php?c=home');
+        }
 
-                ArticleManager::editArticle($id, $title, $summary, $content);
-                header('Location: /index.php?c=article&a=list-article');
+        if (isset($_POST['save']) && ArticleManager::articleExists($id)) {
+            $title = $this->dataClean($this->getFormField('title'));
+            $summary = $this->dataCleanHtmlContent($this->getFormField('summary'));
+            $content = $this->dataCleanHtmlContent($this->getFormField('content'));
+            $image = $this->getFormFieldImage('image');
+
+            if (!$image) {
+                $image = null;
             }
+
+            ArticleManager::editArticle($id, $title, $summary, $content, $image);
+            header('Location: /index.php?c=article&a=list-article');
         }
         $this->render('article/edit-article', [
-            'article'=>ArticleManager::getArticleById($id)
+            'article' => ArticleManager::getArticleById($id)
         ]);
     }
 }

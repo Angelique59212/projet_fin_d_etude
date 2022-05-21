@@ -9,5 +9,5 @@ foreach ($comments as $comment) {
 
     <p><?= $comment->getContent() ?></p>
 
-    <a href="/index.php?c=comment&a=delete-comment&id=<?= $comment->getId() ?>">Supprimer</a><?php
+    <a class="btn btn-alert" href="/index.php?c=comment&a=delete-comment&id=<?= $comment->getId() ?>">Supprimer</a><?php
 }

@@ -11,7 +11,7 @@ class Article extends AbstractEntity
     private string $content;
     private string $summary;
     private string $image;
-
+    private User $author;
 
 
     /**
@@ -19,7 +19,7 @@ class Article extends AbstractEntity
      */
     public function getSummary(): string
     {
-        return $this->summary;
+        return html_entity_decode($this->summary);
     }
 
     /**
@@ -31,8 +31,6 @@ class Article extends AbstractEntity
         $this->summary = $summary;
         return $this;
     }
-
-    private User $author;
 
     /**
      * @return string
@@ -57,7 +55,7 @@ class Article extends AbstractEntity
      */
     public function getContent(): string
     {
-        return $this->content;
+        return html_entity_decode($this->content);
     }
 
     /**

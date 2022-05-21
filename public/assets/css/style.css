@@ -8,11 +8,25 @@ html {
     font-size: 62.5%;
 }
 
+h1 {
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
 body {
     font-size: 1.6rem;
     font-family: Quicksand,sans-serif;
     background: antiquewhite;.
-    color: #383838;
+    color: #404040;
+}
+
+input {
+    padding: 0.4rem !important;
+}
+
+input[type="submit"] {
+    padding: 0.8rem !important;
+    margin-top: 3rem !important;
 }
 
 #logo {
@@ -23,16 +37,26 @@ body {
 /*Header and Footer */
 header, footer {
     width: 100%;
-    height: 5rem;
     background: #dacccc;
     padding: 0.5rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+}
+
+header {
+    justify-content: space-between;
+    padding: 2rem;
 }
 
 footer {
+    justify-content: flex-end;
     margin-top: 35vw;
+    padding: 2.5rem;
+}
+
+.user-welcome {
+    font-weight: bold;
+    color: #404040;
 }
 
 #bottom, #logout {
@@ -47,12 +71,17 @@ footer a {
     margin: 0.4rem;
 }
 
+footer p {
+    margin-top: 1.2rem;
+    text-align: right;
+}
+
 header .fa-bars {
     display: none;
 }
 
 a {
-    color: #353333;
+    color: #404040;
 }
 
 #title-menu {
@@ -71,7 +100,7 @@ a {
 }
 
 #register-container, #contact-container {
-    border: 1px solid black;
+    border: 1px solid #404040;
     width: 50vw;
     margin: 0 auto;
     border-radius: 3rem;
@@ -83,16 +112,20 @@ a {
     margin: 0 auto;
 }
 
-#login-container input, #register-container input, #contact-container input, #profile-container input {
+#login-container input, #register-container input, #contact-container input, #contact-container textarea, #profile-container input {
     margin: 1rem;
     width: 25vw;
     border-radius: 0.3rem;
 }
 
 #contact-container input {
-    width: 20rem;
     display: block;
     margin: 0 auto;
+}
+
+#contact-container textarea {
+    margin: 0 auto;
+    padding: 1.3rem;
 }
 
 #contact-container button {
@@ -102,6 +135,12 @@ a {
 #register-container input {
     margin: 0.4rem auto;
     border-radius: 0.3rem;
+}
+
+#password-strength {
+    color: indianred;
+    margin-top: 1rem;
+    font-size: 12px;
 }
 
 label {
@@ -130,28 +169,37 @@ label {
 }
 
 /* Profile */
-#profile-container input {
-    width: 15vw;
-}
-
 #profile-container {
     padding: 5rem;
 }
 
 /* Validate modify profile */
-.message {
+.message-error, .message-success {
     display: flex;
     justify-content: center;
     position: absolute;
     top: 0;
     width: 100vw;
-    background: #dacccc;
-    color: blue;
+    /*background: #dacccc;*/
+    color: white;
     padding: 2rem;
+    font-weight: bold;
 }
 
-.message #close {
+.message-error {
+    background-color: indianred;
+}
+
+.message-success {
+    background-color: mediumaquamarine;
+}
+
+.message-error #close, .message-success #close {
     margin-left: 0.8rem;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    display: flex;
 }
 
 #close {
@@ -245,7 +293,7 @@ label {
 
 #article-show {
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid #404040;
     margin: 2rem;
     padding: 2rem;
     width: 50vw;
@@ -265,6 +313,9 @@ label {
 
 #form-addArticle, #form-editArticle {
     padding: 3rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 7rem;
 }
 
 #form-addArticle input, #form-editArticle input {
@@ -285,6 +336,36 @@ label {
     font-size: 2rem;
     text-transform: uppercase;
     text-decoration: underline;
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-actions {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.article-summary {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.article-summary img {
+    max-width: 40rem;
+    height: auto;
+}
+
+.article-summary > div {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+small {
+    display: block;
+    margin-left: 1.2rem;
 }
 
 .editor {
@@ -305,6 +386,7 @@ label {
 #form-addComment textarea {
     width: 48vw;
     height: 32vh;
+    padding: 2rem;
 }
 
 #comments {
@@ -314,11 +396,12 @@ label {
 }
 
 #comment a {
-    padding: 2rem;
+    padding: 0.7rem;
+    font-size: 1.3rem;
 }
 
 #comment {
-    border: 4px double black;
+    border: 4px double #404040;
     width: 50vw;
     margin: 2rem auto;
     padding: 2rem;
@@ -335,8 +418,7 @@ label {
 }
 
 #remove-comment {
-    text-align: center;
-
+    text-align: right;
 }
 
 .style-comment, #register {

@@ -12,6 +12,7 @@ class User extends AbstractEntity
     private string $password;
     private string $validationKey;
     private bool $valid;
+    private Role $role;
 
     /**
      * @return string
@@ -41,17 +42,12 @@ class User extends AbstractEntity
 
     /**
      * @param bool $valid
+     * @return User
      */
     public function setValid(bool $valid): self
     {
         $this->valid = $valid;
         return $this;
-    }
-    private array $role;
-
-    public function __construct()
-    {
-        $this->role= [];
     }
 
     /**
@@ -127,18 +123,18 @@ class User extends AbstractEntity
     }
 
     /**
-     * @return array
+     * @return Role
      */
-    public function getRole(): array
+    public function getRole(): Role
     {
         return $this->role;
     }
 
     /**
-     * @param array|null $role
+     * @param Role $role
      * @return User
      */
-    public function setRole(?array $role): self
+    public function setRole(Role $role): self
     {
         $this->role = $role;
         return $this;

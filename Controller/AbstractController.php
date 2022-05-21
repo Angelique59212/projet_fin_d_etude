@@ -18,6 +18,7 @@ abstract class AbstractController
         require __DIR__ . "/../View/" . $template . ".html.php";
         $html = ob_get_clean();
         require __DIR__ . "/../View/base.html.php";
+        exit;
     }
 
     /**
@@ -71,14 +72,7 @@ abstract class AbstractController
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            /* @var User $user */
-            foreach ($user->getRole() as $role) {
-                /* @var  Role $role */
-                $currentRole = $role->getRoleName();
-                if ($currentRole === 'admin') {
-                    return true;
-                }
-            }
+            return $user->getRole()->getRoleName() === 'admin';
         }
         return false;
     }
@@ -105,6 +99,11 @@ abstract class AbstractController
      */
     public function getFormFieldImage(string $field)
     {
+        // Return false if asked image does not exists.
+        if(!$_FILES[$field]) {
+            return false;
+        }
+
         if ($_FILES[$field]['error']) {
             $_SESSION['error'] = "Erreur lors de l'upload de l'image";
             return false;
@@ -120,7 +119,7 @@ abstract class AbstractController
         $newName = (new DateTime())->format('ymdhis') . '-' . uniqid();
         $newName .= substr($oldName, strripos($oldName, '.'));
         if (!move_uploaded_file($_FILES[$field]['tmp_name'], 'uploads/' . $newName)) {
-            $_SESSION['error'] = "echec de l'enregistrement de l'image";
+            $_SESSION['error'] = "Echec de l'enregistrement de l'image";
             return false;
         }
 
@@ -142,11 +141,14 @@ abstract class AbstractController
      */
     public function checkPassword(string $password, string $password_repeat): bool
     {
-        if ($password === $password_repeat) {
-            return true;
-        } else {
-            return false;
-        }
+        $uppercase = preg_match('/[A-Z]/', $password);
+        $lowercase = preg_match('/[a-z]/', $password);
+        $number    = preg_match('/[0-9]/', $password);
+        $specialChars = preg_match('/[^\w]/', $password);
+        $same = $password === $password_repeat;
+        $lenght = strlen($password) >= 7 && strlen($password) <= 150;
+
+        return $uppercase && $lowercase && $number && $specialChars && $same && $lenght;
     }
 
     /**
@@ -160,4 +162,26 @@ abstract class AbstractController
         $data = stripslashes($data);
         return htmlspecialchars($data);
     }
+
+
+    /**
+     * sanitize data for html database inserts.
+     * @param $data
+     * @return string
+     */
+    public function dataCleanHtmlContent($data): string
+    {
+        $allowedTags = [
+            'p', 'div', 'small', 'ul', 'ol', 'li', 'table', 'th', 'td', 'tr', 'tbody', 'thead', 'span', 'strong', 'em',
+            'pre', 'blockquote', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a'
+        ];
+
+        $data = html_entity_decode($data, ENT_QUOTES, 'utf8');
+        $data = strip_tags($data, $allowedTags);
+
+        // Replace JavaScript events on attributes (onclick, onClick, onkeyup, ......).
+        preg_replace('/(<.+?)(?<=\s)on[a-z]+\s*=\s*(?:([\'"])(?!\2).+?\2|(?:\S+?\(.*?\)(?=[\s>])))(.*?>)/i', "$1 $3", $data);
+        return htmlentities($data);
+    }
 }
+

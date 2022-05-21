@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <script src="/assets/js/tarteaucitron/tarteaucitron.js-1.9.6/tarteaucitron.js"></script>
@@ -13,24 +13,40 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <script src="lib/jquery.js"></script>
 </head>
-<body>
-<?php
-if (isset($_SESSION['error'])) {?>
-    <div class="message">
-        <p><?= $_SESSION['error'] ?></p>
-        <button id="close">x</button>
-    </div>
-    <?php
-    unset($_SESSION['error']);
+<body> <?php
+
+use App\Model\Entity\User;
+
+/**
+ * Display messages by types.
+ * @param string $type
+ * @return void
+ */
+function getMessages(string $type) {
+    if (isset($_SESSION[$type])) { ?>
+        <div class="message-<?= $type ?>">
+            <p><?= $_SESSION[$type] ?></p>
+            <button id="close">x</button>
+        </div> <?php
+        unset($_SESSION[$type]);
+    }
 }
+
+// Error and success messages.
+getMessages('error');
+getMessages('success');
+
 ?>
 <header>
+    <div class="user-welcome"> <?php
+        if(isset($_SESSION['user'])) { ?>
+            Hello <?= $_SESSION['user']->getFirstName() . " " . $_SESSION['user']->getLastname();
+        } ?>
+    </div>
     <div id="logout">
         <div>
             <i class="fas fa-bars" id="burger"></i>
         </div><?php
-
-        use App\Model\Entity\User;
 
         if (!isset($_SESSION['user'])) {?>
             <a href="/?c=home">Home</a>
@@ -38,18 +54,19 @@ if (isset($_SESSION['error'])) {?>
             <a href="/?c=user&a=register">Inscription</a>
             <a href="/?c=article&a=list-article">Articles</a><?php
         }
-        else {
-            $user = $_SESSION['user'];
-            /* @var User $user */ ?>
+        else { ?>
             <a href="/?c=home">Home</a>
-            <a href="/?c=user&a=show-user&id=<?= $user->getId() ?>">Mon profil</a>
-            <a href="/?c=article&a=list-article">Articles</a>
+            <a href="/?c=user&a=show-user">Mon profil</a>
+            <a href="/?c=article&a=list-article">Articles</a> <?php
+
+            // Administration / add articles
+            if (AbstractController::verifyRole()) {?>
+                <a href="/index.php?c=article&a=add-article">Ajouter un article</a> <?php
+            }?>
+
             <a href="/?c=user&a=disconnect">Déconnexion</a><?php
         }
 
-        if (AbstractController::verifyRole()) {?>
-            <a href="/index.php?c=article&a=add-article">Ajouter un article</a> <?php
-        }
         ?>
     </div>
 </header>

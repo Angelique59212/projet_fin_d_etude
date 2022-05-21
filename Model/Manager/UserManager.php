@@ -39,6 +39,7 @@ class UserManager
 
         return $stmt->execute();
     }
+
     /**
      * Login
      * @param string $mail
@@ -55,6 +56,7 @@ class UserManager
 
         if ($stmt->execute()) {
             $user = $stmt->fetch();
+
             if (password_verify($password, $user['password'])) {
                 $userSession = (new User())
                     ->setId($user['id'])
@@ -62,6 +64,7 @@ class UserManager
                     ->setFirstname($user['firstname'])
                     ->setLastname($user['lastname'])
                     ->setValid($user['valid']);
+
                 $userSession->setRole(RoleManager::getRoleByUser($userSession));
 
                 if (!$userSession->isValid()) {
@@ -141,16 +144,15 @@ class UserManager
     public static function addUser(User &$user): bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (validation_key, email, firstname, lastname, password, mdf58_role_fk) 
-            VALUES (:validation_key, :email, :firstname, :lastname, :password, :mdf58_role_fk)
+            INSERT INTO " . self::TABLE . " (validation_key, email, firstname, lastname, password, role_fk) 
+            VALUES (:validation_key, :email, :firstname, :lastname, :password, :role_fk)
         ");
 
-        $role = 1;
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':firstname', $user->getFirstname());
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':mdf58_role_fk', $role);
+        $stmt->bindValue(':role_fk', $user->getRole()->getId());
         $stmt->bindValue(':validation_key', $user->getValidationKey());
 
         $result = $stmt->execute();
@@ -167,8 +169,8 @@ class UserManager
     {
         if (self::userExists($user->getId())) {
             return Connect::dbConnect()->exec("
-            DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
-        ");
+                DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
+            ");
         }
         return false;
     }
@@ -178,16 +180,23 @@ class UserManager
      * @param string $firstname
      * @param string $lastname
      * @param string $email
+     * @param string|null $password
      * @return void
      */
-    public static function editUser(int $id, string $firstname, string $lastname, string $email)
+    public static function editUser(int $id, string $firstname, string $lastname, string $email, string $password = null)
     {
+        $passwordField = null !== $password ? ', password=:password' : '';
         $stmt = Connect::dbConnect()->prepare("
-            UPDATE " . self::TABLE . " SET firstname = :firstname, lastname = :lastname, email = :email WHERE id = $id
+            UPDATE " . self::TABLE .
+                " SET firstname = :firstname, lastname = :lastname, email = :email" . $passwordField .
+                " WHERE id = $id
         ");
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
+        if(null !== $password) {
+            $stmt->bindParam(':password', $password);
+        }
 
         $stmt->execute();
     }

@@ -14,23 +14,22 @@ class RoleManager
 
     /**
      * @param User $user
-     * @return array
+     * @return Role
      */
-    public static function getRoleByUser(User $user): array
+    public static function getRoleByUser(User $user): Role
     {
-        $roles = [];
-        $query = Connect::dbConnect()->query("
-            SELECT * FROM mdf58_role
-                        WHERE id IN (SELECT mdf58_role_fk FROM mdf58_user WHERE id = {$user->getId()})");
-        if($query){
-            foreach($query->fetchAll() as $roleData) {
-                $roles[] = (new Role())
-                    ->setId($roleData['id'])
-                    ->setRoleName($roleData['role_name'])
-                ;
-            }
-        }
-        return $roles;
+        // Getting user role id.
+        $roleId = Connect::dbConnect()->query("SELECT role_fk FROM " . UserManager::TABLE . " WHERE id=" . $user->getId());
+        $roleId = $roleId->fetch()['role_fk'];
+
+        // Getting user role data.
+        $query = Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $roleId");
+        $roleData = $query->fetch();
+
+        return (new Role())
+            ->setId($roleData['id'])
+            ->setRoleName($roleData['role_name'])
+        ;
     }
 
     /**
@@ -41,12 +40,21 @@ class RoleManager
     {
         $role = new Role();
         $rQuery = Connect::dbConnect()->query("
-            SELECT * FROM mdf58_role WHERE role_name = '".$roleName."'
+            SELECT * FROM " . self::TABLE . " WHERE role_name = '".$roleName."'
         ");
         if($rQuery && $roleData = $rQuery->fetch()) {
             $role->setId($roleData['id']);
             $role->setRoleName($roleData['role_name']);
         }
         return $role;
+    }
+
+    /**
+     * Return the default role name
+     * @return Role
+     */
+    public static function getDefaultRole(): Role
+    {
+        return self::getRoleByName('user');
     }
 }

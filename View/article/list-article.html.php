@@ -6,25 +6,27 @@ $articles = $data['article'];
 
 
 ?>
-<div id="container-article"><?php
-    if (isset($data['article'])) { ?>
-        <?php
-        foreach ($articles as $article) {
-            /* @var Article $article */ ?>
-                <div id="article-show">
-                    <p id="title"><?= $article->getTitle() ?></p>
-                    <p id="author"><?= $article->getAuthor()->getFirstname() ?></p>
-                    <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir plus</a>
 
-            <?php
+<div class="container-home"><?php
+    foreach ($articles as $article) {
+        /* @var Article $article */?>
+        <div class="container-dys">
+            <div class="card">
+                <img class="card-img-top w-30" src="uploads/<?= $article->getImage() ?>" alt="image enfant">
 
-            if (AbstractController::verifyRole()) { ?>
-                <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a>
-                <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier</a>
-                <?php
-            }?>
-                </div><?php
-        }
-    }?>
+                <div class="card-body">
+                    <h2 class="card-title fw-bold"><?= $article->getTitle()?></h2>
+                    <p class="card-text">
+                        <?= $article->getSummary() ?>
+                    </p>
+                    <a href="/index.php?c=article&a=show-article&id=<?= $article->getId()?>" class="btn btn-primary"> En savoir plus</a> <?php
+                    // Admin buttons.
+                    if (AbstractController::verifyRole()) { ?>
+                        <a class="btn btn-warning" href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier</a>
+                        <a class="btn btn-danger" href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a>   <?php
+                    } ?>
+                </div>
+            </div>
+        </div><?php
+    } ?>
 </div>
-

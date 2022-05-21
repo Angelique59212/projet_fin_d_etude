@@ -10,18 +10,19 @@ class ArticleManager
     public const TABLE = 'mdf58_article';
 
     /**
+     * @param int|null $limit
      * @return array
      */
-    public static function findAll(): array
+    public static function findAll(int $limit = null): array
     {
         $articles = [];
-        $query = Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
+        $limitQuery = $limit !== null ? " LIMIT $limit" : '';
+        $query = Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " ORDER BY id DESC" . $limitQuery);
         if ($query) {
-            $userManager = new UserManager();
             foreach ($query->fetchAll() as $articleData) {
                 $articles[] = (new Article())
                     ->setId($articleData['id'])
-                    ->setAuthor(UserManager::getUserById($articleData['mdf58_user_fk']))
+                    ->setAuthor(UserManager::getUserById($articleData['user_fk']))
                     ->setContent($articleData['content'])
                     ->setTitle($articleData['title'])
                     ->setSummary($articleData['summary'])
@@ -34,25 +35,20 @@ class ArticleManager
 
     /**
      * @param Article $article
-     * @param string $title
-     * @param string $summary
-     * @param string $image
-     * @param string $content
-     * @param int $id
      * @return bool
      */
-    public static function addNewArticle(Article &$article, string $title,string $summary,string $image, string $content, int $id):bool
+    public static function addNewArticle(Article &$article):bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERT INTO " .self::TABLE . " (title,summary,image,content, mdf58_user_fk)
-            VALUES (:title,:summary,:image, :content, :mdf58_user_fk)
+            INSERT INTO " .self::TABLE . " (title,summary,image,content, user_fk)
+            VALUES (:title,:summary,:image, :content, :user_fk)
         ");
 
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':summary', $summary);
-        $stmt->bindParam(':image', $image);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':mdf58_user_fk', $id);
+        $stmt->bindValue(':title', $article->getTitle());
+        $stmt->bindValue(':summary', $article->getSummary());
+        $stmt->bindValue(':image', $article->getImage());
+        $stmt->bindValue(':content', $article->getContent());
+        $stmt->bindValue(':user_fk', $article->getAuthor()->getId());
 
         $result = $stmt->execute();
         $article->setId(Connect::dbConnect()->lastInsertId());
@@ -91,7 +87,7 @@ class ArticleManager
             ->setSummary($data['summary'])
             ->setImage($data['image'])
             ->setContent($data['content'])
-            ->setAuthor(UserManager::getUserById($data['mdf58_user_fk']))
+            ->setAuthor(UserManager::getUserById($data['user_fk']))
             ;
     }
 
@@ -100,18 +96,23 @@ class ArticleManager
      * @param string $title
      * @param string $summary
      * @param string $content
+     * @param string|null $image
      * @return void
      */
-    public static function editArticle(int $id, string $title,string $summary, string $content)
+    public static function editArticle(int $id, string $title,string $summary, string $content, string $image = null)
     {
+        $imageSql = $image ? ", image = :image" : '';
         $stmt = Connect::dbConnect()->prepare("
-            UPDATE " . self::TABLE . " SET title= :title,summary= :summary, content = :content WHERE id = :id
-                ");
+            UPDATE " . self::TABLE . " SET title = :title,summary = :summary, content = :content" . $imageSql . " WHERE id = :id
+        ");
+
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':summary', $summary);
         $stmt->bindParam(':content', $content);
-
+        if($image) {
+            $stmt->bindParam(':image', $image);
+        }
         $stmt->execute();
     }
 
@@ -123,8 +124,8 @@ class ArticleManager
     {
         if (self::articleExists($article->getId())) {
             return Connect::dbConnect()->exec("
-            DELETE FROM " . self::TABLE . " WHERE id = {$article->getId()}
-        ");
+                DELETE FROM " . self::TABLE . " WHERE id = {$article->getId()}
+            ");
         }
         return false;
     }

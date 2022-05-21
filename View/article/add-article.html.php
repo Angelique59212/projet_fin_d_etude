@@ -14,11 +14,11 @@
         </div>
         <div>
             <label class="editor" for="editor">Résumé:</label>
-            <textarea name="summary" id="editor" cols="30" rows="10"></textarea>
+            <textarea name="summary" id="editor-summary"></textarea>
         </div>
         <div>
             <label class="editor" for="editor">Contenu:</label>
-            <textarea name="content" id="editor" cols="30" rows="10"></textarea>
+            <textarea name="content" id="editor-content"></textarea>
         </div>
 
         <input id="btn-addArticle" type="submit" name="save" value="Enregistrer" class="btn btn-secondary">

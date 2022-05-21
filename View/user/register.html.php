@@ -1,6 +1,6 @@
 <div class="contain"></div>
 <div id="register-container">
-        <form action="/index.php?c=user&a=register" method="post">
+        <form id="form-register" action="/index.php?c=user&a=register" method="post">
             <div>
                 <label for="email">Adresse mail:</label>
                 <input type="email" id="email" name="email" minlength="5" maxlength="150" required>
@@ -30,6 +30,7 @@
                 </div>
             </div>
 
+            <small id="password-strength">Votre mot de passe doit contenir au moins: une majuscule, une minuscule, un chiffre, un caractère spécial</small>
             <input class="btn btn-secondary" type="submit" name="submit" id="submit" value="S'inscrire">
         </form>
     </div>

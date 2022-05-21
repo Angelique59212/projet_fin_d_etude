@@ -20,7 +20,7 @@
 
                 <label for="message"></label>
                 <textarea name="message" id="message" cols="30" rows="10" minlength="20" maxlength="250"
-                          placeholder="Votre message (min 20caractères, max 250)" required></textarea>
+                          placeholder="Votre message (min 20 caractères, max 250)" required></textarea>
                 <div>
                     <button id="btn-contact" class="btn btn-secondary" type="submit" name="submit">Envoyer</button>
                 </div>
