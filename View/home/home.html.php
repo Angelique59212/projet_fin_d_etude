@@ -15,8 +15,8 @@ if (isset($data['articles']))
 {
     $articles = $data['articles'];
     ?>
-<div id="title-home">
-    <h2>Découvrez les 3 derniers articles</h2>
+<div>
+    <h2 id="title-home">Découvrez les 3 derniers articles</h2>
 </div>
 <div class="container-home"><?php
 
